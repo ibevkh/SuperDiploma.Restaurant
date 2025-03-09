@@ -1,0 +1,6 @@
+@SuperDiploma.Restaurant.Service_HostAddress = http://localhost:5001
+
+GET {{SuperDiploma.Restaurant.Service_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

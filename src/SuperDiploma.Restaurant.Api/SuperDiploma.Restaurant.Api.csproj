@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SuperDiploma.Restaurant.DomainService.Contracts\SuperDiploma.Restaurant.DomainService.Contracts.csproj" />
+    <ProjectReference Include="..\SuperDiploma.Restaurant.DomainService.Dto.Mappings\SuperDiploma.Restaurant.DomainService.Dto.Mappings.csproj" />
+    <ProjectReference Include="..\SuperDiploma.Restaurant.DomainService.Dto\SuperDiploma.Restaurant.DomainService.Dto.csproj" />
+    <ProjectReference Include="..\SuperDiploma.Restaurant.DomainService.Enums\SuperDiploma.Restaurant.DomainService.Enums.csproj" />
+    <ProjectReference Include="..\SuperDiploma.Restaurant.DomainService\SuperDiploma.Restaurant.DomainService.csproj" />
+  </ItemGroup>
+
+</Project>
