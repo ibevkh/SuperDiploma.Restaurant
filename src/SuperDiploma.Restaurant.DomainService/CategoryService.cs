@@ -8,7 +8,7 @@ namespace SuperDiploma.Restaurant.DomainService;
 
 public class CategoryService : ICategoryService
 {
-    //ВОНО НЕ БУДЕ ВИКОРИСТОВУВАТИСЯ. БУДЕ СТАТИЧНЕ!!!!!!!!!!
+    // CRUD ОПЕРАЦІЇ ЗАСТОСОВУВАТИСЯ НЕ БУДУТЬ!!!
     private readonly IMapper _mapper;
     private readonly IRestaurantUnitOfWork _myUnitOfWork;
 

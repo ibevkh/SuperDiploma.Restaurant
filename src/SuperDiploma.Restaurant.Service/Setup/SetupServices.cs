@@ -10,7 +10,7 @@ public static class SetupServices
         return services
                 .AddScoped<ICategoryService, CategoryService>()
                 .AddScoped<IOrderService, OrderService>()
-                
+                .AddScoped<IDishService, DishService>()
             ;
                 
     }

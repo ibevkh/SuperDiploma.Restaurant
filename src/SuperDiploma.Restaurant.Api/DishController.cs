@@ -6,7 +6,7 @@ namespace SuperDiploma.Restaurant.Api;
 
 [ApiController]
 [Route("api/category/dishes")]
-internal class DishController : ControllerBase
+public class DishController : ControllerBase
 {
     private readonly IDishService _dishService;
 
@@ -25,19 +25,19 @@ internal class DishController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<DishMenuItemDto>> AddTask(DishMenuItemDto dto)
     {
-        return Ok(await _dishService.AddCategoryAsync(dto));
+        return Ok(await _dishService.AddDishAsync(dto));
     }
 
     [HttpDelete]
-    public async Task<ActionResult<DishMenuItemDto>> DeleteTask(int id)
+    public async Task<ActionResult<DishMenuItemDto>> DeleteTask(DishMenuItemDto dto)
     {
-        await _dishService.DeleteCategoryAsync(id);
+        await _dishService.DeleteDishAsync(dto);
         return Ok();
     }
 
     [HttpPut]
     public async Task<ActionResult<DishMenuItemDto>> UpdateTask(DishMenuItemDto dto)
     {
-        return Ok(await _dishService.UpdateCategoryAsync(dto));
+        return Ok(await _dishService.UpdateDishAsync(dto));
     }
 }
