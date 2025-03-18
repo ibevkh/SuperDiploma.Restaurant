@@ -12,10 +12,31 @@ public class RestaurantDbContext : DbContext
     public DbSet<ReservationDbo> Reservations { get; set; }
     public DbSet<CustomerDbo> CustomerOrders { get; set; }
 
+   
+    public DbSet<ShopItemCategoryDbo> ShopItemCategories { get; set; }
+    public DbSet<ShopItemDbo> ShopItems { get; set; }
+
     public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<ShopItemCategoryDbo>().Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()");
+        modelBuilder.Entity<ShopItemCategoryDbo>().Property(p => p.ModifiedAt).HasDefaultValueSql("GETDATE()");
+        modelBuilder.Entity<ShopItemCategoryDbo>().Property(p => p.Name).HasMaxLength(50);
+        modelBuilder.Entity<ShopItemCategoryDbo>().Property(p => p.Description).HasMaxLength(500);
+        modelBuilder.Entity<ShopItemCategoryDbo>().Property(p => p.IsDeleted).HasDefaultValue(false);
+        modelBuilder.Entity<ShopItemCategoryDbo>().HasKey(p => p.Id);
+
+        modelBuilder.Entity<ShopItemCategoryDbo>().ToTable("ShopItemCategories", "md");
+
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()");
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.ModifiedAt).HasDefaultValueSql("GETDATE()");
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.Name).HasMaxLength(50);
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.Description).HasMaxLength(500);
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.IsDeleted).HasDefaultValue(false);
+        modelBuilder.Entity<ShopItemDbo>().ToTable("ShopItems", "md");
+
+
         // AdminDbo
         modelBuilder.Entity<AdminDbo>()
             .HasKey(a => a.Id);
@@ -202,6 +223,14 @@ public class RestaurantDbContext : DbContext
             new CategoryDbo { Id = 2, Name = "Другі страви" },
             new CategoryDbo { Id = 3, Name = "Десерти" },
             new CategoryDbo { Id = 4, Name = "Салати" }
+        );
+
+        modelBuilder.Entity<ShopItemCategoryDbo>().HasData(
+            Enumerable.Range(1, 15).Select(s => new ShopItemCategoryDbo{ Id = s, Name = $"Категорія {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1})
+        );
+
+        modelBuilder.Entity<ShopItemDbo>().HasData(
+            Enumerable.Range(1, 15).Select(s => new ShopItemDbo { Id = s, Name = $"Товар {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1, CategoryId = (s < 7) ? 1 : 2})
         );
     }
 }

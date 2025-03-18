@@ -27,8 +27,13 @@ public class Program
         builder.Services.AddRepository<DishMenuItemDbo>();
         builder.Services.AddRepository<OrderDbo>();
         builder.Services.AddRepository<ReservationDbo>();
+        //TODO: move to setup folder
+        builder.Services.AddRepository<ShopItemDbo>();
+        builder.Services.AddRepository<ShopItemCategoryDbo>();
 
         builder.Services.AddAutoMapper(typeof(RestaurantMapping));
+        builder.Services.AddAutoMapper(typeof(ShopItemMapping));
+        builder.Services.AddAutoMapper(typeof(DatasourceMapping));
         //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 

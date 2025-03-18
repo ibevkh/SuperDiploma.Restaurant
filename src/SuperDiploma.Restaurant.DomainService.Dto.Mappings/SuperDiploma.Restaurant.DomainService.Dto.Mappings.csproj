@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SuperDiploma.Restaurant.DataContext.EF\SuperDiploma.Restaurant.DataContext.EF.csproj" />
     <ProjectReference Include="..\SuperDiploma.Restaurant.DataContext.Models\SuperDiploma.Restaurant.DataContext.Entities.csproj" />
     <ProjectReference Include="..\SuperDiploma.Restaurant.DomainService.Dto\SuperDiploma.Restaurant.DomainService.Dto.csproj" />
   </ItemGroup>
