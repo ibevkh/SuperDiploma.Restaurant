@@ -1,23 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SuperDiploma.Restaurant.DomainService.Contracts;
+using SuperDiploma.Restaurant.DomainService.Dto.Models;
 using SuperDiploma.Restaurant.DomainService.Dto.Models.ShopItem;
 
 namespace SuperDiploma.Restaurant.Api;
 
 [ApiController]
-[Route("api/shop-item")]
-public class ShopItemController : ControllerBase
+[Route("api/shop-items")]
+public class ShopItemsController : ControllerBase
 {
     private readonly IShopItemService _shopItemService;
 
-    public ShopItemController(IShopItemService shopItemService)
+    public ShopItemsController(IShopItemService shopItemService)
     {
         _shopItemService = shopItemService;
     }
 
 
     [HttpPost("filtered-grid")]
-    public async Task<ActionResult<IEnumerable<ShopItemListItemDto>>> GetFilteredList(ShopItemGridFilterDto filter)
+    public async Task<ActionResult<PaginatedResponseDto<IEnumerable<ShopItemListItemDto>>>> GetFilteredList(ShopItemGridFilterDto filter)
     {
         var result = await _shopItemService.GetFilteredListAsync(filter);
         return Ok(result);

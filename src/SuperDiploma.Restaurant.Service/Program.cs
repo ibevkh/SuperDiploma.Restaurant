@@ -34,6 +34,7 @@ public class Program
         builder.Services.AddAutoMapper(typeof(RestaurantMapping));
         builder.Services.AddAutoMapper(typeof(ShopItemMapping));
         builder.Services.AddAutoMapper(typeof(DatasourceMapping));
+        builder.Services.AddAutoMapper(typeof(PaginatedResponseMapping));
         //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 

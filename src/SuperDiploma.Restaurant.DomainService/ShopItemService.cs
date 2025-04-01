@@ -21,11 +21,11 @@ public class ShopItemService : IShopItemService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<ShopItemListItemDto>> GetFilteredListAsync(ShopItemGridFilterDto filter)
+    public async Task<PaginatedResponseDto<IEnumerable<ShopItemListItemDto>>> GetFilteredListAsync(ShopItemGridFilterDto filter)
     {
         var filterDbo = _mapper.Map<ShopItemGridFilter>(filter);
         var dbo = await _myUnitOfWork.Repository<ShopItemDbo>().GetFilteredListAsync(filterDbo);
-        return _mapper.Map<IEnumerable<ShopItemListItemDto>>(dbo);
+        return _mapper.Map<PaginatedResponseDto<IEnumerable<ShopItemListItemDto>>>(dbo);
     }
 
     public async Task<ShopItemFilterDatasourceDto> GetFilterDataSourcesAsync()

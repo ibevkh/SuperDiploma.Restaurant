@@ -12,7 +12,8 @@ public class ShopItemMapping : Profile
     {
         CreateMap<ShopItemDbo, ShopItemListItemDto>()
             .ForMember(dest => dest.CategoryName, opts => opts.MapFrom(src => src.Category.Name))
-            .ForMember(dest => dest.CategoryDescription, opts => opts.MapFrom(src => src.Category.Description));
+            .ForMember(dest => dest.CategoryDescription, opts => opts.MapFrom(src => src.Category.Description))
+            .ForMember(dest => dest.State, opts => opts.MapFrom(src => src.StateId));
 
         CreateMap<ShopItemDbo, ShopItemPreviewDto>()
             .ForMember(dest => dest.CategoryName, opts => opts.MapFrom(src => src.Category.Name))

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SuperDiploma.Core;
+using SuperDiploma.Restaurant.DataContext.EF.Models;
 using SuperDiploma.Restaurant.DataContext.EF.Models.ShopItem;
 using SuperDiploma.Restaurant.DataContext.Entities.Models;
 
@@ -48,23 +49,35 @@ public static class ShopItemRepository
             .FirstOrDefaultAsync();
     }
 
-    public static async Task<IEnumerable<ShopItemDbo>> GetFilteredListAsync(
+    public static async Task<PaginatedResponse<IEnumerable<ShopItemDbo>>> GetFilteredListAsync(
         this ISuperDiplomaRepository<ShopItemDbo> repository, ShopItemGridFilter filter)
     {
         const int defaultPageSize = 10;
 
-        return await repository
+        var query = repository
             .Queryable()
             .AsNoTracking()
             .Where(x =>
                 x.IsDeleted == false &&
                 (!filter.CategoryId.HasValue || x.CategoryId == filter.CategoryId.Value) &&
                 (!filter.StateId.HasValue || x.StateId == filter.StateId)
-            )
+            );
+
+        var totalQty = query.Count();
+
+        var data = await query
             .OrderBy(x => x.CreatedAt)
             .Skip((filter.PageNumber ?? 0) * filter.PageSize ?? defaultPageSize)
             .Take(filter.PageSize ?? defaultPageSize)
             .Include(x => x.Category)
             .ToListAsync();
+
+        return new PaginatedResponse<IEnumerable<ShopItemDbo>>
+        {
+            PageSize = filter.PageSize,
+            PageNumber = filter.PageNumber,
+            TotalQty = totalQty,
+            Data = data
+        };
     }
 }

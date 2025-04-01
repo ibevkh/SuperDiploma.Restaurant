@@ -230,7 +230,7 @@ public class RestaurantDbContext : DbContext
         );
 
         modelBuilder.Entity<ShopItemDbo>().HasData(
-            Enumerable.Range(1, 15).Select(s => new ShopItemDbo { Id = s, Name = $"Товар {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1, CategoryId = (s < 7) ? 1 : 2})
+            Enumerable.Range(1, 15).Select(s => new ShopItemDbo { Id = s, Name = $"Товар {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1, CategoryId = (s < 7) ? 1 : 2, StateId = (s > 7) ? 1 : 2 })
         );
     }
 }
