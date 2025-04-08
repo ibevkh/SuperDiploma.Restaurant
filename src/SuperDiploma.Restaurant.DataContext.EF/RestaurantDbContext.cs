@@ -29,11 +29,13 @@ public class RestaurantDbContext : DbContext
 
         modelBuilder.Entity<ShopItemCategoryDbo>().ToTable("ShopItemCategories", "md");
 
-        modelBuilder.Entity<ShopItemDbo>().Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()");
-        modelBuilder.Entity<ShopItemDbo>().Property(p => p.ModifiedAt).HasDefaultValueSql("GETDATE()");
-        modelBuilder.Entity<ShopItemDbo>().Property(p => p.Name).HasMaxLength(50);
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()").IsRequired();
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.ModifiedAt).HasDefaultValueSql("GETDATE()").IsRequired();
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.CreatedBy).IsRequired();
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.ModifiedBy).IsRequired();
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.Name).HasMaxLength(50).IsRequired();
         modelBuilder.Entity<ShopItemDbo>().Property(p => p.Description).HasMaxLength(500);
-        modelBuilder.Entity<ShopItemDbo>().Property(p => p.IsDeleted).HasDefaultValue(false);
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.IsDeleted).HasDefaultValue(false).IsRequired();
         modelBuilder.Entity<ShopItemDbo>().ToTable("ShopItems", "md");
 
 

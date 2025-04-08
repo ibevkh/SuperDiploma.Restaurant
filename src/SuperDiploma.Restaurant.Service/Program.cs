@@ -1,9 +1,9 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using SuperDiploma.Core;
 using SuperDiploma.Restaurant.DataContext.EF;
-using SuperDiploma.Restaurant.DataContext.Entities.Models;
-using SuperDiploma.Restaurant.DomainService.Dto.Mappings;
+using SuperDiploma.Restaurant.DomainService.Validators.ShopItems;
 using SuperDiploma.Restaurant.Service.Setup;
 
 namespace SuperDiploma.Restaurant.Service;
@@ -23,23 +23,12 @@ public class Program
 
         builder.Services.AddScoped<IRestaurantUnitOfWork, RestaurantUnitOfWork>();
 
-        builder.Services.AddRepository<CategoryDbo>();
-        builder.Services.AddRepository<DishMenuItemDbo>();
-        builder.Services.AddRepository<OrderDbo>();
-        builder.Services.AddRepository<ReservationDbo>();
-        //TODO: move to setup folder
-        builder.Services.AddRepository<ShopItemDbo>();
-        builder.Services.AddRepository<ShopItemCategoryDbo>();
+        builder.Services.AddFluentValidationAutoValidation();
 
-        builder.Services.AddAutoMapper(typeof(RestaurantMapping));
-        builder.Services.AddAutoMapper(typeof(ShopItemMapping));
-        builder.Services.AddAutoMapper(typeof(DatasourceMapping));
-        builder.Services.AddAutoMapper(typeof(PaginatedResponseMapping));
-        //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-
-        //builder.Services.AddScoped<ICategoryService, CategoryService>();
+        builder.Services.AddRestaurantRepositories();
+        builder.Services.AddRestaurantMappers();
         builder.Services.AddRestaurantServices();
+        builder.Services.AddRestaurantValidators();
 
         builder.Services.AddCors(options =>
         {
@@ -52,7 +41,6 @@ public class Program
                         .AllowAnyHeader();
                 });
         });
-
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

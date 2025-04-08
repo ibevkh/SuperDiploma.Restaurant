@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35728.132 d17.12
+VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperDiploma.Restaurant.Api", "src\SuperDiploma.Restaurant.Api\SuperDiploma.Restaurant.Api.csproj", "{843B0F96-21E9-47AA-82DD-AC47D1FA7F89}"
 EndProject
@@ -28,6 +28,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Core", "_Core", "{B8B9DA92-1FE6-4111-9839-B074D4B1A1DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperDiploma.Core", "src\SuperDiploma.Core\SuperDiploma.Core.csproj", "{E2371728-8D2C-47F1-879B-E69F00A89AE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperDiploma.Restaurant.DomainService.Validators", "src\SuperDiploma.Restaurant.DomainService.Validators\SuperDiploma.Restaurant.DomainService.Validators.csproj", "{1C974209-62C6-46A1-932F-E9538AAFAB08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{E2371728-8D2C-47F1-879B-E69F00A89AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2371728-8D2C-47F1-879B-E69F00A89AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2371728-8D2C-47F1-879B-E69F00A89AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C974209-62C6-46A1-932F-E9538AAFAB08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C974209-62C6-46A1-932F-E9538AAFAB08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C974209-62C6-46A1-932F-E9538AAFAB08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C974209-62C6-46A1-932F-E9538AAFAB08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,5 +94,6 @@ Global
 		{6CEA3881-E42D-49ED-9BCC-0A82D3568875} = {FE6705AD-5286-40BE-802B-482800835136}
 		{808600AC-987E-4719-BB83-B8074EBB2333} = {FE6705AD-5286-40BE-802B-482800835136}
 		{E2371728-8D2C-47F1-879B-E69F00A89AE2} = {B8B9DA92-1FE6-4111-9839-B074D4B1A1DA}
+		{1C974209-62C6-46A1-932F-E9538AAFAB08} = {FE6705AD-5286-40BE-802B-482800835136}
 	EndGlobalSection
 EndGlobal

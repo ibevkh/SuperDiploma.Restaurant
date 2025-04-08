@@ -23,6 +23,16 @@ public class ShopItemMapping : Profile
         CreateMap<ShopItemDbo, ShopItemFormDto>()
             .ForMember(dest => dest.State, opts => opts.MapFrom(src => (ShopItemState)src.StateId));
 
+        CreateMap<ShopItemFormDto, ShopItemDbo>()
+            .ForMember(dest => dest.StateId, opts => opts.MapFrom(src => src.State));
+
+
+        //CreateMap<ShopItemFormDto, ShopItemDbo>()
+        //    .ForMember(dest => dest.ModifiedBy, opts => opts.Ignore())
+        //    .ForMember(dest => dest.ModifiedAt, opts => opts.Ignore())
+        //    .ForMember(dest => dest.CreatedBy, opts => opts.Ignore())
+        //    .ForMember(dest => dest.CreatedAt, opts => opts.Ignore());
+
         CreateMap<ShopItemGridFilterDto, ShopItemGridFilter>()
             .ForMember(dest => dest.StateId, opts => opts.MapFrom(src => (int?)src.State));
     }

@@ -12,6 +12,7 @@ public static class SetupServices
                 .AddScoped<IOrderService, OrderService>()
                 .AddScoped<IDishService, DishService>()
                 .AddScoped<IShopItemService, ShopItemService>()
+                .AddScoped<IAuthService, AuthService>()
             ;
                 
     }

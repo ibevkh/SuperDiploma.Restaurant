@@ -13,11 +13,13 @@ namespace SuperDiploma.Restaurant.DomainService;
 public class ShopItemService : IShopItemService
 {
     private readonly IRestaurantUnitOfWork _myUnitOfWork;
+    private readonly IAuthService _authService;
     private readonly IMapper _mapper;
 
-    public ShopItemService(IRestaurantUnitOfWork myUnitOfWork, IMapper mapper)
+    public ShopItemService(IRestaurantUnitOfWork myUnitOfWork, IAuthService authService, IMapper mapper)
     {
         _myUnitOfWork = myUnitOfWork;
+        _authService = authService;
         _mapper = mapper;
     }
 
@@ -28,7 +30,7 @@ public class ShopItemService : IShopItemService
         return _mapper.Map<PaginatedResponseDto<IEnumerable<ShopItemListItemDto>>>(dbo);
     }
 
-    public async Task<ShopItemFilterDatasourceDto> GetFilterDataSourcesAsync()
+    public async Task<ShopItemFilterDatasourceDto> GetGridDataSourcesAsync()
     {
         var categories = await _myUnitOfWork.Repository<ShopItemCategoryDbo>().GetFilterDatasourceAsync();
         var states = Enum.GetValues(typeof(ShopItemState))
@@ -55,10 +57,10 @@ public class ShopItemService : IShopItemService
         return _mapper.Map<ShopItemPreviewDto>(dbo);
     }
 
-    public async Task<ShopItemFormDto> GetByIdAsync(int id)
+    public async Task<ShopItemFormDto> GetItemByIdAsync(int id)
     {
         var dbo = await _myUnitOfWork.Repository<ShopItemDbo>().GetByIdAsync(id);
-        return _mapper.Map<ShopItemFormDto>(dbo);
+        return dbo == null ? null : _mapper.Map<ShopItemFormDto>(dbo);
     }
 
     public async Task<ShopItemFormDatasourceDto> GetFormDataSourcesAsync()
@@ -81,4 +83,61 @@ public class ShopItemService : IShopItemService
 
         return result;
     }
+
+    public async Task<ShopItemFormDto> CreateOrUpdateItemAsync(ShopItemFormDto item)
+    {
+        var isNew = item.Id == 0;
+        var currentDateTime = DateTimeOffset.Now;
+
+        var dbo = _mapper.Map<ShopItemDbo>(item);
+
+        var currentUser = await _authService.GetCurrentUserIdAsync();
+
+        dbo.ModifiedBy = currentUser;
+        dbo.ModifiedAt = currentDateTime;
+
+        if (isNew)
+        {
+            dbo.CreatedBy = currentUser;
+            dbo.CreatedAt = currentDateTime;
+            _myUnitOfWork.Repository<ShopItemDbo>().Insert(dbo);
+        }
+        else
+        {
+            var existedItem = await _myUnitOfWork.Repository<ShopItemDbo>().GetByIdAsync(dbo.Id);
+
+            if (existedItem == null) throw new InvalidOperationException("Об'єкт не знайдений.");
+
+            dbo.IsDeleted = existedItem.IsDeleted;
+            dbo.CreatedBy = existedItem.CreatedBy;
+            dbo.CreatedAt = existedItem.CreatedAt;
+
+            _myUnitOfWork.Repository<ShopItemDbo>().Update(dbo);
+        }
+
+        await _myUnitOfWork.SaveChangesAsync();
+
+        return await GetItemByIdAsync(dbo.Id);
+    }
+
+    public async Task<ShopItemFormDto> RemoveItemAsync(int id)
+    {
+        var repository = _myUnitOfWork.Repository<ShopItemDbo>();   
+        var existingItem = await repository.GetByIdAsync(id);
+
+        if (existingItem == null)
+        {
+            throw new InvalidOperationException("Об'єкт не знайдений.");
+        }
+
+        existingItem.IsDeleted = true;
+        existingItem.ModifiedAt = DateTimeOffset.Now;
+        existingItem.ModifiedBy = await _authService.GetCurrentUserIdAsync();
+
+        repository.Update(existingItem);
+        await _myUnitOfWork.SaveChangesAsync();
+
+        return _mapper.Map<ShopItemFormDto>(existingItem);
+    }
+
 }
