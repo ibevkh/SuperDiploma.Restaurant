@@ -8,23 +8,23 @@ namespace SuperDiploma.Restaurant.Api;
 [Route("api/orderERROR")]
 internal class ReservationController : ControllerBase
 {
-    private readonly IReservationService _reservationService;
-    public ReservationController(IReservationService reservationService)
-    {
-        _reservationService = reservationService;
-    }
+    //private readonly IReservationService _reservationService;
+    //public ReservationController(IReservationService reservationService)
+    //{
+    //    _reservationService = reservationService;
+    //}
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<ReservationDto>>> GetAll()
-    {
-        //return Ok(await _reservationService.GetOrderAsync());
-        throw new NotImplementedException();
-    }
+    //[HttpGet]
+    //public async Task<ActionResult<IEnumerable<ReservationDto>>> GetAll()
+    //{
+    //    //return Ok(await _reservationService.GetOrderAsync());
+    //    throw new NotImplementedException();
+    //}
 
-    [HttpPost]
-    public async Task<ActionResult<ReservationDto>> AddTask(ReservationDto dto)
-    {
-        return Ok(await _reservationService.AddReservationAsync(dto));
-    }
+    //[HttpPost]
+    //public async Task<ActionResult<ReservationDto>> AddTask(ReservationDto dto)
+    //{
+    //    return Ok(await _reservationService.AddReservationAsync(dto));
+    //}
 
 }

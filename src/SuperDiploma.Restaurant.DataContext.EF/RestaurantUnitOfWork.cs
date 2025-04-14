@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SuperDiploma.Core;
+using SuperDiploma.Core.Models;
 using URF.Core.EF;
 
 namespace SuperDiploma.Restaurant.DataContext.EF;
@@ -19,7 +20,7 @@ public class RestaurantUnitOfWork : UnitOfWork, IRestaurantUnitOfWork
         _context?.Dispose();
     }
 
-    public ISuperDiplomaRepository<T> Repository<T>() where T : class
+    public ISuperDiplomaRepository<T> Repository<T>() where T : SuperDiplomaBaseDbo
     {
         return _serviceProvider.GetService(typeof(ISuperDiplomaRepository<T>)) as ISuperDiplomaRepository<T> ?? throw new InvalidOperationException();
     }

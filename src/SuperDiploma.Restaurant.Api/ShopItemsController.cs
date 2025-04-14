@@ -58,7 +58,7 @@ public class ShopItemsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<ShopItemFormDto>> CreateOrUpdateItem([FromBody] [CustomizeValidator(RuleSet = "create")] ShopItemFormDto item)
+    public async Task<ActionResult<ShopItemFormDto>> CreateOrUpdateItem([FromBody][CustomizeValidator(RuleSet = "create")] ShopItemFormDto item)
     {
         var result = await _shopItemService.CreateOrUpdateItemAsync(item);
         return Ok(result);

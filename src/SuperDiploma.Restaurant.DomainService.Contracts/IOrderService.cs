@@ -4,6 +4,6 @@ namespace SuperDiploma.Restaurant.DomainService.Contracts;
 
 public interface IOrderService
 {
-    Task<OrderDto> AddOrderAsync(OrderDto orderDto);
-    Task<IEnumerable<OrderDto>> GetOrderAsync();
+    //Task<OrderDto> AddOrderAsync(OrderDto orderDto);
+    //Task<IEnumerable<OrderDto>> GetOrderAsync();
 }

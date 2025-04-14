@@ -11,10 +11,10 @@ public static class SetupRepositories
     public static IServiceCollection AddRestaurantRepositories(this IServiceCollection services)
     {
         return services
-                .AddRepository<CategoryDbo>()
-                .AddRepository<DishMenuItemDbo>()
-                .AddRepository<OrderDbo>()
-                .AddRepository<ReservationDbo>()
+                //.AddRepository<CategoryDbo>()
+                //.AddRepository<DishMenuItemDbo>()
+                //.AddRepository<OrderDbo>()
+                //.AddRepository<ReservationDbo>()
                 .AddRepository<ShopItemDbo>()
                 .AddRepository<ShopItemCategoryDbo>()
             ;

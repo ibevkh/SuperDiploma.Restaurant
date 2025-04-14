@@ -2,5 +2,5 @@
 
 public interface ITableService
 {
-    Task<bool> MarkTableAsUnavailableAsync(int tableId);
+    //Task<bool> MarkTableAsUnavailableAsync(int tableId);
 }

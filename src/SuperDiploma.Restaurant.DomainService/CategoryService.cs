@@ -9,20 +9,20 @@ namespace SuperDiploma.Restaurant.DomainService;
 public class CategoryService : ICategoryService
 {
     // CRUD ОПЕРАЦІЇ ЗАСТОСОВУВАТИСЯ НЕ БУДУТЬ!!!
-    private readonly IMapper _mapper;
-    private readonly IRestaurantUnitOfWork _myUnitOfWork;
+    //private readonly IMapper _mapper;
+    //private readonly IRestaurantUnitOfWork _myUnitOfWork;
 
-    public CategoryService(IRestaurantUnitOfWork myUnitOfWork, IMapper mapper)
-    {
-        _myUnitOfWork = myUnitOfWork;
-        _mapper = mapper;
-    }
+    //public CategoryService(IRestaurantUnitOfWork myUnitOfWork, IMapper mapper)
+    //{
+    //    _myUnitOfWork = myUnitOfWork;
+    //    _mapper = mapper;
+    //}
 
-    public async Task<IEnumerable<CategoryDto>> GetAllCategoriesAsync()
-    {
-        var categories = await _myUnitOfWork.Repository<CategoryDbo>().GetAllAsync();
-        return _mapper.Map<IEnumerable<CategoryDto>>(categories);
-    }
+    //public async Task<IEnumerable<CategoryDto>> GetAllCategoriesAsync()
+    //{
+    //    var categories = await _myUnitOfWork.Repository<CategoryDbo>().GetAllAsync();
+    //    return _mapper.Map<IEnumerable<CategoryDto>>(categories);
+    //}
 
     //public async Task<CategoryDto> AddCategoryAsync(CategoryDto categoryDto)
     //{
@@ -52,18 +52,18 @@ public class CategoryService : ICategoryService
     //    }
     //}
 
-    public Task<CategoryDto> AddCategoryAsync(CategoryDto categoryDto)
-    {
-        throw new NotImplementedException();
-    }
+    //public Task<CategoryDto> AddCategoryAsync(CategoryDto categoryDto)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
-    public Task<CategoryDto> UpdateCategoryAsync(CategoryDto categoryDto)
-    {
-        throw new NotImplementedException();
-    }
+    //public Task<CategoryDto> UpdateCategoryAsync(CategoryDto categoryDto)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
-    public Task DeleteCategoryAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
+    //public Task DeleteCategoryAsync(int id)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }

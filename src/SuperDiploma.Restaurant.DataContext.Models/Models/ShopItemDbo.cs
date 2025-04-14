@@ -1,6 +1,8 @@
-﻿namespace SuperDiploma.Restaurant.DataContext.Entities.Models;
+﻿using SuperDiploma.Core.Models;
 
-public class ShopItemDbo : BaseRemovableDbo
+namespace SuperDiploma.Restaurant.DataContext.Entities.Models;
+
+public class ShopItemDbo : SuperDiplomaBaseDbo
 {
     public string Name { get; set; }
     public string Description { get; set; }

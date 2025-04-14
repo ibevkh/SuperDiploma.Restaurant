@@ -4,5 +4,5 @@ namespace SuperDiploma.Restaurant.DomainService.Contracts;
 
 public interface IReservationService
 {
-    Task<ReservationDto> AddReservationAsync(ReservationDto reservationDto);
+    //Task<ReservationDto> AddReservationAsync(ReservationDto reservationDto);
 }

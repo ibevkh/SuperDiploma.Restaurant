@@ -206,26 +206,26 @@ public class RestaurantDbContext : DbContext
             .HasForeignKey(r => r.TableId)
             .OnDelete(DeleteBehavior.Restrict); // Не дозволяємо видаляти стіл, якщо є бронювання
 
-        modelBuilder.Entity<TableDbo>().HasData(
-            new TableDbo { Id = 1, TableNumber = 1, Capacity = 4, IsAvailable = true },
-            new TableDbo { Id = 2, TableNumber = 2, Capacity = 4, IsAvailable = true },
-            new TableDbo { Id = 3, TableNumber = 3, Capacity = 4, IsAvailable = true },
-            new TableDbo { Id = 4, TableNumber = 4, Capacity = 4, IsAvailable = true },
-            new TableDbo { Id = 5, TableNumber = 5, Capacity = 6, IsAvailable = true },
-            new TableDbo { Id = 6, TableNumber = 6, Capacity = 6, IsAvailable = true },
-            new TableDbo { Id = 7, TableNumber = 7, Capacity = 6, IsAvailable = true },
-            new TableDbo { Id = 8, TableNumber = 8, Capacity = 8, IsAvailable = true },
-            new TableDbo { Id = 9, TableNumber = 9, Capacity = 8, IsAvailable = true },
-            new TableDbo { Id = 10, TableNumber = 10, Capacity = 2, IsAvailable = true },
-            new TableDbo { Id = 11, TableNumber = 11, Capacity = 2, IsAvailable = true }
-        );
+        //modelBuilder.Entity<TableDbo>().HasData(
+        //    new TableDbo { Id = 1, TableNumber = 1, Capacity = 4, IsAvailable = true },
+        //    new TableDbo { Id = 2, TableNumber = 2, Capacity = 4, IsAvailable = true },
+        //    new TableDbo { Id = 3, TableNumber = 3, Capacity = 4, IsAvailable = true },
+        //    new TableDbo { Id = 4, TableNumber = 4, Capacity = 4, IsAvailable = true },
+        //    new TableDbo { Id = 5, TableNumber = 5, Capacity = 6, IsAvailable = true },
+        //    new TableDbo { Id = 6, TableNumber = 6, Capacity = 6, IsAvailable = true },
+        //    new TableDbo { Id = 7, TableNumber = 7, Capacity = 6, IsAvailable = true },
+        //    new TableDbo { Id = 8, TableNumber = 8, Capacity = 8, IsAvailable = true },
+        //    new TableDbo { Id = 9, TableNumber = 9, Capacity = 8, IsAvailable = true },
+        //    new TableDbo { Id = 10, TableNumber = 10, Capacity = 2, IsAvailable = true },
+        //    new TableDbo { Id = 11, TableNumber = 11, Capacity = 2, IsAvailable = true }
+        //);
 
-        modelBuilder.Entity<CategoryDbo>().HasData(
-            new CategoryDbo { Id = 1, Name = "Перші страви" },
-            new CategoryDbo { Id = 2, Name = "Другі страви" },
-            new CategoryDbo { Id = 3, Name = "Десерти" },
-            new CategoryDbo { Id = 4, Name = "Салати" }
-        );
+        //modelBuilder.Entity<CategoryDbo>().HasData(
+        //    new CategoryDbo { Id = 1, Name = "Перші страви" },
+        //    new CategoryDbo { Id = 2, Name = "Другі страви" },
+        //    new CategoryDbo { Id = 3, Name = "Десерти" },
+        //    new CategoryDbo { Id = 4, Name = "Салати" }
+        //);
 
         modelBuilder.Entity<ShopItemCategoryDbo>().HasData(
             Enumerable.Range(1, 15).Select(s => new ShopItemCategoryDbo{ Id = s, Name = $"Категорія {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1})

@@ -9,14 +9,14 @@ namespace SuperDiploma.Restaurant.DomainService;
 
 public class DishService : IDishService
 {
-    private readonly IMapper _mapper;
-    private readonly IRestaurantUnitOfWork _myUnitOfWork;
+    //private readonly IMapper _mapper;
+    //private readonly IRestaurantUnitOfWork _myUnitOfWork;
 
-    public DishService(IRestaurantUnitOfWork myUnitOfWork, IMapper mapper)
-    {
-        _myUnitOfWork = myUnitOfWork;
-        _mapper = mapper;
-    }
+    //public DishService(IRestaurantUnitOfWork myUnitOfWork, IMapper mapper)
+    //{
+    //    _myUnitOfWork = myUnitOfWork;
+    //    _mapper = mapper;
+    //}
 
     //public async Task<DishMenuItemDto> AddCategoryAsync(DishMenuItemDto dishDto)
     //{
@@ -46,37 +46,37 @@ public class DishService : IDishService
     //    }
     //}
 
-    public async Task<IEnumerable<DishMenuItemDto>> GetDishMenuItemByCategory(int categoryId)
-    {
-        var dishes = await _myUnitOfWork.Repository<DishMenuItemDbo>().GetDishMenuItemByCategory(categoryId);
+    //public async Task<IEnumerable<DishMenuItemDto>> GetDishMenuItemByCategory(int categoryId)
+    //{
+    //    var dishes = await _myUnitOfWork.Repository<DishMenuItemDbo>().GetDishMenuItemByCategory(categoryId);
 
-        return _mapper.Map<IEnumerable<DishMenuItemDto>>(dishes);
-    }
+    //    return _mapper.Map<IEnumerable<DishMenuItemDto>>(dishes);
+    //}
 
-    public async Task<DishMenuItemDto> AddDishAsync(DishMenuItemDto dishDto)
-    {
-        var dishForAdd = _mapper.Map<DishMenuItemDbo>(dishDto);
-        _myUnitOfWork.Repository<DishMenuItemDbo>().Insert(dishForAdd);
-        await _myUnitOfWork.SaveChangesAsync();
+    //public async Task<DishMenuItemDto> AddDishAsync(DishMenuItemDto dishDto)
+    //{
+    //    var dishForAdd = _mapper.Map<DishMenuItemDbo>(dishDto);
+    //    _myUnitOfWork.Repository<DishMenuItemDbo>().Insert(dishForAdd);
+    //    await _myUnitOfWork.SaveChangesAsync();
 
-        return _mapper.Map<DishMenuItemDto>(dishForAdd);
-    }
+    //    return _mapper.Map<DishMenuItemDto>(dishForAdd);
+    //}
 
-    public async Task<DishMenuItemDto> UpdateDishAsync(DishMenuItemDto dishDto)
-    {
-        var dishForUpdate = _mapper.Map<DishMenuItemDbo>(dishDto);
-        _myUnitOfWork.Repository<DishMenuItemDbo>().Update(dishForUpdate);
-        await _myUnitOfWork.SaveChangesAsync();
+    //public async Task<DishMenuItemDto> UpdateDishAsync(DishMenuItemDto dishDto)
+    //{
+    //    var dishForUpdate = _mapper.Map<DishMenuItemDbo>(dishDto);
+    //    _myUnitOfWork.Repository<DishMenuItemDbo>().Update(dishForUpdate);
+    //    await _myUnitOfWork.SaveChangesAsync();
 
-        return _mapper.Map<DishMenuItemDto>(dishForUpdate);
-    }
+    //    return _mapper.Map<DishMenuItemDto>(dishForUpdate);
+    //}
 
-    public async Task DeleteDishAsync(DishMenuItemDto dishDto)
-    {
-        var dbo = _mapper.Map<DishMenuItemDbo>(dishDto);
-        _myUnitOfWork.Repository<DishMenuItemDbo>().Delete(dbo);
-        await _myUnitOfWork.SaveChangesAsync();
-    }
+    //public async Task DeleteDishAsync(DishMenuItemDto dishDto)
+    //{
+    //    var dbo = _mapper.Map<DishMenuItemDbo>(dishDto);
+    //    _myUnitOfWork.Repository<DishMenuItemDbo>().Delete(dbo);
+    //    await _myUnitOfWork.SaveChangesAsync();
+    //}
 
 
 }

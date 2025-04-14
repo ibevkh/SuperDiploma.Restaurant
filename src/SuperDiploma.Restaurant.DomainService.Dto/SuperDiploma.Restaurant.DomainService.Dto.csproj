@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Models\ShopItemCategoryGridDto.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SuperDiploma.Restaurant.DomainService.Enums\SuperDiploma.Restaurant.DomainService.Enums.csproj" />
   </ItemGroup>
 

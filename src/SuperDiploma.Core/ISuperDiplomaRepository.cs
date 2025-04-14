@@ -1,8 +1,11 @@
-﻿using URF.Core.Abstractions;
+﻿using SuperDiploma.Core.Models;
+using SuperDiploma.Core.Models.Contracts;
+using URF.Core.Abstractions;
 
 namespace SuperDiploma.Core;
 
-public interface ISuperDiplomaRepository<T> : IRepository<T> where T : class
+public interface ISuperDiplomaRepository<T> : IRepository<T> where T : SuperDiplomaBaseDbo
 {
     Task<IEnumerable<T>> GetAllAsync();
+    Task<T> GetByIdAsync(int id);
 }

@@ -9,13 +9,13 @@ namespace SuperDiploma.Restaurant.DomainService;
 
 public class OrderService : IOrderService
 {
-    private readonly IMapper _mapper;
-    private readonly IRestaurantUnitOfWork _myUnitOfWork;
-    public OrderService(IMapper mapper, IRestaurantUnitOfWork myUnitOfWork)
-    {
-        _mapper = mapper;
-        _myUnitOfWork = myUnitOfWork;
-    }
+    //private readonly IMapper _mapper;
+    //private readonly IRestaurantUnitOfWork _myUnitOfWork;
+    //public OrderService(IMapper mapper, IRestaurantUnitOfWork myUnitOfWork)
+    //{
+    //    _mapper = mapper;
+    //    _myUnitOfWork = myUnitOfWork;
+    //}
 
     //public async Task<OrderDto> AddOrderAsync(OrderDto orderDto)
     //{
@@ -31,15 +31,15 @@ public class OrderService : IOrderService
     //    var orders = await _myUnitOfWork.Repository<OrderDbo>().GetAllAsync();
     //    return _mapper.Map<IEnumerable<OrderDto>>(orders);
     //}
-    public Task<OrderDto> AddOrderAsync(OrderDto orderDto)
-    {
-        throw new NotImplementedException();
-    }
+    //public Task<OrderDto> AddOrderAsync(OrderDto orderDto)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
-    public async Task<IEnumerable<OrderDto>> GetOrderAsync()
-    {
-        var dbo = await _myUnitOfWork.Repository<OrderDbo>().GetOrderWithDetails();
+    //public async Task<IEnumerable<OrderDto>> GetOrderAsync()
+    //{
+    //    var dbo = await _myUnitOfWork.Repository<OrderDbo>().GetOrderWithDetails();
 
-        return _mapper.Map<IEnumerable<OrderDto>>(dbo);
-    }
+    //    return _mapper.Map<IEnumerable<OrderDto>>(dbo);
+    //}
 }

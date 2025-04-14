@@ -4,8 +4,8 @@ namespace SuperDiploma.Restaurant.DomainService.Contracts;
 
 public interface IDishService
 {
-    Task<IEnumerable<DishMenuItemDto>> GetDishMenuItemByCategory(int categoryId);
-    Task<DishMenuItemDto> AddDishAsync(DishMenuItemDto dishDto);
-    Task<DishMenuItemDto> UpdateDishAsync(DishMenuItemDto dishDto);
-    Task DeleteDishAsync(DishMenuItemDto dishDto);
+    //Task<IEnumerable<DishMenuItemDto>> GetDishMenuItemByCategory(int categoryId);
+    //Task<DishMenuItemDto> AddDishAsync(DishMenuItemDto dishDto);
+    //Task<DishMenuItemDto> UpdateDishAsync(DishMenuItemDto dishDto);
+    //Task DeleteDishAsync(DishMenuItemDto dishDto);
 }
