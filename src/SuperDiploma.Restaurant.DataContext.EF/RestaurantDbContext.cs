@@ -64,7 +64,15 @@ public class RestaurantDbContext : DbContext
             .IsRequired()
             .HasMaxLength(50);
 
-        // DishMenuItemDbo
+        modelBuilder.Entity<ShopItemCategoryDbo>().HasData(
+            Enumerable.Range(1, 15).Select(s => new ShopItemCategoryDbo { Id = s, Name = $"Категорія {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1 })
+        );
+
+        modelBuilder.Entity<ShopItemDbo>().HasData(
+            Enumerable.Range(1, 15).Select(s => new ShopItemDbo { Id = s, Name = $"Товар {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1, CategoryId = (s < 7) ? 1 : 2, StateId = (s > 7) ? 1 : 2 })
+        );
+
+        
         modelBuilder.Entity<DishMenuItemDbo>()
             .HasKey(d => d.Id);
 
@@ -88,7 +96,6 @@ public class RestaurantDbContext : DbContext
             .HasForeignKey(d => d.CategoryId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // CustomerDbo
         modelBuilder.Entity<CustomerDbo>()
             .HasKey(c => c.Id);
 
@@ -120,7 +127,6 @@ public class RestaurantDbContext : DbContext
             .Property(c => c.ApartmentNumber)
             .HasDefaultValue(1);
 
-        // OrderDbo
         modelBuilder.Entity<OrderDbo>()
             .HasKey(o => o.Id);
 
@@ -149,7 +155,6 @@ public class RestaurantDbContext : DbContext
             .HasForeignKey(o => o.ReservationId)
             .IsRequired(false);
 
-        // OrderItemDbo
         modelBuilder.Entity<OrderItemDbo>()
             .HasKey(oi => oi.Id);
 
@@ -170,7 +175,6 @@ public class RestaurantDbContext : DbContext
             .HasForeignKey(oi => oi.DishMenuItemId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // TableDbo
         modelBuilder.Entity<TableDbo>()
             .HasKey(t => t.Id);
 
@@ -182,7 +186,6 @@ public class RestaurantDbContext : DbContext
             .Property(t => t.IsAvailable)
             .IsRequired();
 
-        // ReservationDbo
         modelBuilder.Entity<ReservationDbo>()
             .HasKey(r => r.Id);
 
@@ -203,36 +206,7 @@ public class RestaurantDbContext : DbContext
         modelBuilder.Entity<ReservationDbo>()
             .HasOne(r => r.Table)
             .WithMany(t => t.Reservations)
-            .HasForeignKey(r => r.TableId)
-            .OnDelete(DeleteBehavior.Restrict); // Не дозволяємо видаляти стіл, якщо є бронювання
+            .HasForeignKey(r => r.TableId);
 
-        //modelBuilder.Entity<TableDbo>().HasData(
-        //    new TableDbo { Id = 1, TableNumber = 1, Capacity = 4, IsAvailable = true },
-        //    new TableDbo { Id = 2, TableNumber = 2, Capacity = 4, IsAvailable = true },
-        //    new TableDbo { Id = 3, TableNumber = 3, Capacity = 4, IsAvailable = true },
-        //    new TableDbo { Id = 4, TableNumber = 4, Capacity = 4, IsAvailable = true },
-        //    new TableDbo { Id = 5, TableNumber = 5, Capacity = 6, IsAvailable = true },
-        //    new TableDbo { Id = 6, TableNumber = 6, Capacity = 6, IsAvailable = true },
-        //    new TableDbo { Id = 7, TableNumber = 7, Capacity = 6, IsAvailable = true },
-        //    new TableDbo { Id = 8, TableNumber = 8, Capacity = 8, IsAvailable = true },
-        //    new TableDbo { Id = 9, TableNumber = 9, Capacity = 8, IsAvailable = true },
-        //    new TableDbo { Id = 10, TableNumber = 10, Capacity = 2, IsAvailable = true },
-        //    new TableDbo { Id = 11, TableNumber = 11, Capacity = 2, IsAvailable = true }
-        //);
-
-        //modelBuilder.Entity<CategoryDbo>().HasData(
-        //    new CategoryDbo { Id = 1, Name = "Перші страви" },
-        //    new CategoryDbo { Id = 2, Name = "Другі страви" },
-        //    new CategoryDbo { Id = 3, Name = "Десерти" },
-        //    new CategoryDbo { Id = 4, Name = "Салати" }
-        //);
-
-        modelBuilder.Entity<ShopItemCategoryDbo>().HasData(
-            Enumerable.Range(1, 15).Select(s => new ShopItemCategoryDbo{ Id = s, Name = $"Категорія {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1})
-        );
-
-        modelBuilder.Entity<ShopItemDbo>().HasData(
-            Enumerable.Range(1, 15).Select(s => new ShopItemDbo { Id = s, Name = $"Товар {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1, CategoryId = (s < 7) ? 1 : 2, StateId = (s > 7) ? 1 : 2 })
-        );
     }
 }

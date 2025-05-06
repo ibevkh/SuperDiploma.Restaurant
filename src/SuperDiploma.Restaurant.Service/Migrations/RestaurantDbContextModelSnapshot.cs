@@ -259,9 +259,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ItemCount")
-                        .HasColumnType("int");
-
                     b.Property<DateTimeOffset>("ModifiedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
@@ -286,7 +283,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 1",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 1"
@@ -298,7 +294,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 2",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 2"
@@ -310,7 +305,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 3",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 3"
@@ -322,7 +316,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 4",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 4"
@@ -334,7 +327,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 5",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 5"
@@ -346,7 +338,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 6",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 6"
@@ -358,7 +349,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 7",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 7"
@@ -370,7 +360,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 8",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 8"
@@ -382,7 +371,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 9",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 9"
@@ -394,7 +382,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 10",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 10"
@@ -406,7 +393,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 11",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 11"
@@ -418,7 +404,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 12",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 12"
@@ -430,7 +415,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 13",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 13"
@@ -442,7 +426,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 14",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 14"
@@ -454,7 +437,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedBy = 1,
                             Description = "Якийсь опис 15",
                             IsDeleted = false,
-                            ItemCount = 1,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Категорія 15"
@@ -505,6 +487,9 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("StateId")
                         .HasColumnType("int");
 
@@ -526,6 +511,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 1",
+                            Price = 0m,
                             StateId = 2
                         },
                         new
@@ -539,6 +525,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 2",
+                            Price = 0m,
                             StateId = 2
                         },
                         new
@@ -552,6 +539,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 3",
+                            Price = 0m,
                             StateId = 2
                         },
                         new
@@ -565,6 +553,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 4",
+                            Price = 0m,
                             StateId = 2
                         },
                         new
@@ -578,6 +567,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 5",
+                            Price = 0m,
                             StateId = 2
                         },
                         new
@@ -591,6 +581,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 6",
+                            Price = 0m,
                             StateId = 2
                         },
                         new
@@ -604,6 +595,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 7",
+                            Price = 0m,
                             StateId = 2
                         },
                         new
@@ -617,6 +609,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 8",
+                            Price = 0m,
                             StateId = 1
                         },
                         new
@@ -630,6 +623,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 9",
+                            Price = 0m,
                             StateId = 1
                         },
                         new
@@ -643,6 +637,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 10",
+                            Price = 0m,
                             StateId = 1
                         },
                         new
@@ -656,6 +651,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 11",
+                            Price = 0m,
                             StateId = 1
                         },
                         new
@@ -669,6 +665,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 12",
+                            Price = 0m,
                             StateId = 1
                         },
                         new
@@ -682,6 +679,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 13",
+                            Price = 0m,
                             StateId = 1
                         },
                         new
@@ -695,6 +693,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 14",
+                            Price = 0m,
                             StateId = 1
                         },
                         new
@@ -708,6 +707,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedBy = 1,
                             Name = "Товар 15",
+                            Price = 0m,
                             StateId = 1
                         });
                 });
@@ -796,7 +796,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                     b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.TableDbo", "Table")
                         .WithMany("Reservations")
                         .HasForeignKey("TableId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");

@@ -8,14 +8,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SuperDiploma.Restaurant.Service.Migrations
 {
     /// <inheritdoc />
-    public partial class step2 : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "CategoryType",
-                table: "Categories");
+            migrationBuilder.EnsureSchema(
+                name: "md");
 
             migrationBuilder.CreateTable(
                 name: "AdminDbo",
@@ -30,6 +29,19 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AdminDbo", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,6 +60,41 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CustomerOrders", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShopItemCategories",
+                schema: "md",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false, defaultValueSql: "GETDATE()"),
+                    ModifiedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false, defaultValueSql: "GETDATE()"),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShopItemCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TableDbo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TableNumber = table.Column<int>(type: "int", nullable: false),
+                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    Capacity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TableDbo", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,18 +127,34 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TableDbo",
+                name: "ShopItems",
+                schema: "md",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TableNumber = table.Column<int>(type: "int", nullable: false),
-                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    Capacity = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    StateId = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false, defaultValueSql: "GETDATE()"),
+                    ModifiedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false, defaultValueSql: "GETDATE()"),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TableDbo", x => x.Id);
+                    table.PrimaryKey("PK_ShopItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShopItems_ShopItemCategories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalSchema: "md",
+                        principalTable: "ShopItemCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,7 +182,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                         column: x => x.TableId,
                         principalTable: "TableDbo",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -178,32 +241,49 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "Name" },
+                schema: "md",
+                table: "ShopItemCategories",
+                columns: new[] { "Id", "CreatedBy", "Description", "ModifiedBy", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Перші страви" },
-                    { 2, "Другі страви" },
-                    { 3, "Десерти" },
-                    { 4, "Салати" }
+                    { 1, 1, "Якийсь опис 1", 1, "Категорія 1" },
+                    { 2, 1, "Якийсь опис 2", 1, "Категорія 2" },
+                    { 3, 1, "Якийсь опис 3", 1, "Категорія 3" },
+                    { 4, 1, "Якийсь опис 4", 1, "Категорія 4" },
+                    { 5, 1, "Якийсь опис 5", 1, "Категорія 5" },
+                    { 6, 1, "Якийсь опис 6", 1, "Категорія 6" },
+                    { 7, 1, "Якийсь опис 7", 1, "Категорія 7" },
+                    { 8, 1, "Якийсь опис 8", 1, "Категорія 8" },
+                    { 9, 1, "Якийсь опис 9", 1, "Категорія 9" },
+                    { 10, 1, "Якийсь опис 10", 1, "Категорія 10" },
+                    { 11, 1, "Якийсь опис 11", 1, "Категорія 11" },
+                    { 12, 1, "Якийсь опис 12", 1, "Категорія 12" },
+                    { 13, 1, "Якийсь опис 13", 1, "Категорія 13" },
+                    { 14, 1, "Якийсь опис 14", 1, "Категорія 14" },
+                    { 15, 1, "Якийсь опис 15", 1, "Категорія 15" }
                 });
 
             migrationBuilder.InsertData(
-                table: "TableDbo",
-                columns: new[] { "Id", "Capacity", "IsAvailable", "TableNumber" },
+                schema: "md",
+                table: "ShopItems",
+                columns: new[] { "Id", "CategoryId", "CreatedBy", "Description", "Image", "ModifiedBy", "Name", "Price", "StateId" },
                 values: new object[,]
                 {
-                    { 1, 4, true, 1 },
-                    { 2, 4, true, 2 },
-                    { 3, 4, true, 3 },
-                    { 4, 4, true, 4 },
-                    { 5, 6, true, 5 },
-                    { 6, 6, true, 6 },
-                    { 7, 6, true, 7 },
-                    { 8, 8, true, 8 },
-                    { 9, 8, true, 9 },
-                    { 10, 2, true, 10 },
-                    { 11, 2, true, 11 }
+                    { 1, 1, 1, "Якийсь опис 1", null, 1, "Товар 1", 0m, 2 },
+                    { 2, 1, 1, "Якийсь опис 2", null, 1, "Товар 2", 0m, 2 },
+                    { 3, 1, 1, "Якийсь опис 3", null, 1, "Товар 3", 0m, 2 },
+                    { 4, 1, 1, "Якийсь опис 4", null, 1, "Товар 4", 0m, 2 },
+                    { 5, 1, 1, "Якийсь опис 5", null, 1, "Товар 5", 0m, 2 },
+                    { 6, 1, 1, "Якийсь опис 6", null, 1, "Товар 6", 0m, 2 },
+                    { 7, 2, 1, "Якийсь опис 7", null, 1, "Товар 7", 0m, 2 },
+                    { 8, 2, 1, "Якийсь опис 8", null, 1, "Товар 8", 0m, 1 },
+                    { 9, 2, 1, "Якийсь опис 9", null, 1, "Товар 9", 0m, 1 },
+                    { 10, 2, 1, "Якийсь опис 10", null, 1, "Товар 10", 0m, 1 },
+                    { 11, 2, 1, "Якийсь опис 11", null, 1, "Товар 11", 0m, 1 },
+                    { 12, 2, 1, "Якийсь опис 12", null, 1, "Товар 12", 0m, 1 },
+                    { 13, 2, 1, "Якийсь опис 13", null, 1, "Товар 13", 0m, 1 },
+                    { 14, 2, 1, "Якийсь опис 14", null, 1, "Товар 14", 0m, 1 },
+                    { 15, 2, 1, "Якийсь опис 15", null, 1, "Товар 15", 0m, 1 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -245,6 +325,12 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                 name: "IX_Reservations_TableId",
                 table: "Reservations",
                 column: "TableId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShopItems_CategoryId",
+                schema: "md",
+                table: "ShopItems",
+                column: "CategoryId");
         }
 
         /// <inheritdoc />
@@ -257,10 +343,21 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
+                name: "ShopItems",
+                schema: "md");
+
+            migrationBuilder.DropTable(
                 name: "Dishes");
 
             migrationBuilder.DropTable(
                 name: "OrderOrders");
+
+            migrationBuilder.DropTable(
+                name: "ShopItemCategories",
+                schema: "md");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Reservations");
@@ -270,33 +367,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
 
             migrationBuilder.DropTable(
                 name: "TableDbo");
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: 4);
-
-            migrationBuilder.AddColumn<int>(
-                name: "CategoryType",
-                table: "Categories",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
         }
     }
 }

@@ -11,36 +11,36 @@ public class GenericShopItem<TDbo, TDto> : IGenericShopItem<TDbo, TDto>
     where TDbo : SuperDiplomaBaseDbo
     where TDto : class
 {
-    private readonly IRestaurantUnitOfWork _myUnitOfWork;
-    private readonly IAuthService _authService;
-    private readonly IMapper _mapper;
+    protected readonly IRestaurantUnitOfWork MyUnitOfWork;
+    protected readonly IAuthService AuthService;
+    protected readonly IMapper Mapper;
 
     public GenericShopItem (IRestaurantUnitOfWork myUnitOfWork, IAuthService authService, IMapper mapper)
     {
-        _myUnitOfWork = myUnitOfWork;
-        _authService = authService;
-        _mapper = mapper;
+        MyUnitOfWork = myUnitOfWork;
+        AuthService = authService;
+        Mapper = mapper;
     }
 
     public async Task<TDto> GetItemByIdAsync(int id)
     {
-        var dbo = await _myUnitOfWork.Repository<TDbo>().GetByIdAsync(id);
-        return dbo == null ? null : _mapper.Map<TDto>(dbo);
+        var dbo = await MyUnitOfWork.Repository<TDbo>().GetByIdAsync(id);
+        return dbo == null ? null : Mapper.Map<TDto>(dbo);
     }
 
     public async Task<TDto> CreateOrUpdateItemAsync(TDto dto)
     {
-        var dbo = _mapper.Map<TDbo>(dto);
+        var dbo = Mapper.Map<TDbo>(dto);
 
         var isNew = dbo.Id == 0;
         var currentDateTime = DateTimeOffset.Now;
 
-        var currentUser = await _authService.GetCurrentUserIdAsync();
+        var currentUser = await AuthService.GetCurrentUserIdAsync();
 
         dbo.ModifiedBy = currentUser;
         dbo.ModifiedAt = currentDateTime;
 
-        var repository = _myUnitOfWork.Repository<TDbo>();
+        var repository = MyUnitOfWork.Repository<TDbo>();
 
         if (isNew)
         {
@@ -61,14 +61,14 @@ public class GenericShopItem<TDbo, TDto> : IGenericShopItem<TDbo, TDto>
             repository.Update(dbo);
         }
 
-        await _myUnitOfWork.SaveChangesAsync();
+        await MyUnitOfWork.SaveChangesAsync();
 
         return await GetItemByIdAsync(dbo.Id);
     }
 
     public async Task<TDto> RemoveItemAsync(int id)
     {
-        var repository = _myUnitOfWork.Repository<TDbo>();
+        var repository = MyUnitOfWork.Repository<TDbo>();
         var existingItem = await repository.GetByIdAsync(id);
 
         if (existingItem == null)
@@ -78,11 +78,11 @@ public class GenericShopItem<TDbo, TDto> : IGenericShopItem<TDbo, TDto>
 
         existingItem.IsDeleted = true;
         existingItem.ModifiedAt = DateTimeOffset.Now;
-        existingItem.ModifiedBy = await _authService.GetCurrentUserIdAsync();
+        existingItem.ModifiedBy = await AuthService.GetCurrentUserIdAsync();
 
         repository.Update(existingItem);
-        await _myUnitOfWork.SaveChangesAsync();
+        await MyUnitOfWork.SaveChangesAsync();
 
-        return _mapper.Map<TDto>(existingItem);
+        return Mapper.Map<TDto>(existingItem);
     }
 }

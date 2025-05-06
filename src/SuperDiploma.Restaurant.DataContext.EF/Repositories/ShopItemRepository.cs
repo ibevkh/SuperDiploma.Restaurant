@@ -54,8 +54,6 @@ public static class ShopItemRepository
     {
         const int defaultPageSize = 10;
 
-        
-
         var query = repository
             .Queryable()
             .AsNoTracking()

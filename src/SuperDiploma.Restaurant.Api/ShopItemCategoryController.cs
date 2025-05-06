@@ -19,6 +19,15 @@ public class ShopItemCategoryController : ControllerBase
         _categoryService = categoryService;
     }
 
+    [HttpPost("list")]
+    public async Task<ActionResult<PaginatedResponseDto<IEnumerable<ShopItemCategoryGridDto>>>> GetListAsync(
+        [FromBody] ShopItemCategoryGridFilterDto filter)
+    {
+        var result = await _categoryService.GetListAsync(filter);
+        return Ok(result);
+    }
+
+
     [HttpGet("{id:int}")]
     public async Task<ActionResult<ShopItemCategoryFormDto>> GetCategoryById(int id)
     {

@@ -1,7 +1,8 @@
 ﻿namespace SuperDiploma.Restaurant.DomainService.Dto.Models;
 
-public class ShopItemCategoryGrid
+public class ShopItemCategoryGridDto
 {
-    public string  Name { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
     public string Description { get; set; }
 }

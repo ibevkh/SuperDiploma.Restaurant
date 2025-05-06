@@ -9,4 +9,5 @@ public interface IShopItemCategoryService : IGenericShopItem<ShopItemCategoryDbo
     //Task<ShopItemCategoryFormDto> GetCategoryByIdAsync(int id);
     //Task<ShopItemCategoryFormDto> CreateOrUpdateCategoryAsync(ShopItemCategoryFormDto category);
     //Task<ShopItemCategoryFormDto> RemoveCategoryAsync(int id);
+    Task<PaginatedResponseDto<IEnumerable<ShopItemCategoryGridDto>>> GetListAsync(ShopItemCategoryGridFilterDto filter);
 }

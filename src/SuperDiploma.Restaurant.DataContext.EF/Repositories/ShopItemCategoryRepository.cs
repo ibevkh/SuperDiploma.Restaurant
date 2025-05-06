@@ -41,4 +41,35 @@ public static class ShopItemCategoryRepository
             .Distinct()
             .ToListAsync();
     }
+
+    public static async Task<PaginatedResponse<IEnumerable<ShopItemCategoryDbo>>> GetFilteredListAsync(
+        this ISuperDiplomaRepository<ShopItemCategoryDbo> repository,
+        ShopItemCategoryGridFilter filter)
+    {
+        const int defaultPageSize = 10;
+        var pageSize = filter.PageSize ?? defaultPageSize;
+        var pageNumber = filter.PageNumber ?? 0;
+
+        var query = repository
+            .Queryable()
+            .AsNoTracking()
+            .Where(x => !x.IsDeleted);
+
+        var totalQty = await query.CountAsync();
+
+        var data = await query
+            .OrderBy(x => x.Name)
+            .Skip(pageNumber * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return new PaginatedResponse<IEnumerable<ShopItemCategoryDbo>>
+        {
+            TotalQty = totalQty,
+            PageSize = pageSize,
+            PageNumber = pageNumber,
+            Data = data
+        };
+    }
+
 }

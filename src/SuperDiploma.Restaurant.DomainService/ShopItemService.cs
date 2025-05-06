@@ -12,23 +12,19 @@ namespace SuperDiploma.Restaurant.DomainService;
 
 public class ShopItemService : GenericShopItem<ShopItemDbo, ShopItemFormDto>, IShopItemService
 {
-    private readonly IRestaurantUnitOfWork _myUnitOfWork;
-    private readonly IAuthService _authService;
-    private readonly IMapper _mapper;
-
     public ShopItemService(IRestaurantUnitOfWork myUnitOfWork, IAuthService authService, IMapper mapper)
         : base(myUnitOfWork, authService, mapper){ }
 
     public async Task<PaginatedResponseDto<IEnumerable<ShopItemListItemDto>>> GetFilteredListAsync(ShopItemGridFilterDto filter)
     {
-        var filterDbo = _mapper.Map<ShopItemGridFilter>(filter);
-        var dbo = await _myUnitOfWork.Repository<ShopItemDbo>().GetFilteredListAsync(filterDbo);
-        return _mapper.Map<PaginatedResponseDto<IEnumerable<ShopItemListItemDto>>>(dbo);
+        var filterDbo = Mapper.Map<ShopItemGridFilter>(filter);
+        var dbo = await MyUnitOfWork.Repository<ShopItemDbo>().GetFilteredListAsync(filterDbo);
+        return Mapper.Map<PaginatedResponseDto<IEnumerable<ShopItemListItemDto>>>(dbo);
     }
 
     public async Task<ShopItemFilterDatasourceDto> GetGridDataSourcesAsync()
     {
-        var categories = await _myUnitOfWork.Repository<ShopItemCategoryDbo>().GetFilterDatasourceAsync();
+        var categories = await MyUnitOfWork.Repository<ShopItemCategoryDbo>().GetFilterDatasourceAsync();
         var states = Enum.GetValues(typeof(ShopItemState))
             .Cast<ShopItemState>()
             .Select(t => new DatasourceItemDto()
@@ -40,7 +36,7 @@ public class ShopItemService : GenericShopItem<ShopItemDbo, ShopItemFormDto>, IS
 
         var result = new ShopItemFilterDatasourceDto
         {
-            Categories = _mapper.Map<IEnumerable<DatasourceItemDto>>(categories),
+            Categories = Mapper.Map<IEnumerable<DatasourceItemDto>>(categories),
             States = states
         };
 
@@ -49,8 +45,8 @@ public class ShopItemService : GenericShopItem<ShopItemDbo, ShopItemFormDto>, IS
 
     public async Task<ShopItemPreviewDto> GetPreviewByIdAsync(int id)
     {
-        var dbo = await _myUnitOfWork.Repository<ShopItemDbo>().GetPreviewByIdAsync(id);
-        return _mapper.Map<ShopItemPreviewDto>(dbo);
+        var dbo = await MyUnitOfWork.Repository<ShopItemDbo>().GetPreviewByIdAsync(id);
+        return Mapper.Map<ShopItemPreviewDto>(dbo);
     }
 
     //public async Task<ShopItemFormDto> GetItemByIdAsync(int id)
@@ -61,7 +57,7 @@ public class ShopItemService : GenericShopItem<ShopItemDbo, ShopItemFormDto>, IS
 
     public async Task<ShopItemFormDatasourceDto> GetFormDataSourcesAsync()
     {
-        var categories = await _myUnitOfWork.Repository<ShopItemCategoryDbo>().GetDatasourceAsync();
+        var categories = await MyUnitOfWork.Repository<ShopItemCategoryDbo>().GetDatasourceAsync();
         var states = Enum.GetValues(typeof(ShopItemState))
             .Cast<ShopItemState>()
             .Select(t => new DatasourceItemDto()
@@ -73,7 +69,7 @@ public class ShopItemService : GenericShopItem<ShopItemDbo, ShopItemFormDto>, IS
 
         var result = new ShopItemFormDatasourceDto
         {
-            Categories = _mapper.Map<IEnumerable<DatasourceItemDto>>(categories),
+            Categories = Mapper.Map<IEnumerable<DatasourceItemDto>>(categories),
             States = states
         };
 
