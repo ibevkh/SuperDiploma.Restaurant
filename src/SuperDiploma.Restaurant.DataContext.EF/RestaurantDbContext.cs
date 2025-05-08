@@ -35,9 +35,18 @@ public class RestaurantDbContext : DbContext
         modelBuilder.Entity<ShopItemDbo>().Property(p => p.ModifiedBy).IsRequired();
         modelBuilder.Entity<ShopItemDbo>().Property(p => p.Name).HasMaxLength(50).IsRequired();
         modelBuilder.Entity<ShopItemDbo>().Property(p => p.Description).HasMaxLength(500);
+        modelBuilder.Entity<ShopItemDbo>().Property(p => p.Price).IsRequired();
         modelBuilder.Entity<ShopItemDbo>().Property(p => p.IsDeleted).HasDefaultValue(false).IsRequired();
         modelBuilder.Entity<ShopItemDbo>().ToTable("ShopItems", "md");
 
+
+        modelBuilder.Entity<ShopItemCategoryDbo>().HasData(
+            Enumerable.Range(1, 15).Select(s => new ShopItemCategoryDbo { Id = s, Name = $"Категорія {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1 })
+        );
+
+        modelBuilder.Entity<ShopItemDbo>().HasData(
+            Enumerable.Range(1, 15).Select(s => new ShopItemDbo { Id = s, Name = $"Товар {s}", Description = $"Якийсь опис {s}", Price = 100, CreatedBy = 1, ModifiedBy = 1, CategoryId = (s < 7) ? 1 : 2, StateId = (s > 7) ? 1 : 2 })
+        );
 
         // AdminDbo
         modelBuilder.Entity<AdminDbo>()
@@ -63,15 +72,6 @@ public class RestaurantDbContext : DbContext
             .Property(c => c.Name)
             .IsRequired()
             .HasMaxLength(50);
-
-        modelBuilder.Entity<ShopItemCategoryDbo>().HasData(
-            Enumerable.Range(1, 15).Select(s => new ShopItemCategoryDbo { Id = s, Name = $"Категорія {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1 })
-        );
-
-        modelBuilder.Entity<ShopItemDbo>().HasData(
-            Enumerable.Range(1, 15).Select(s => new ShopItemDbo { Id = s, Name = $"Товар {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1, CategoryId = (s < 7) ? 1 : 2, StateId = (s > 7) ? 1 : 2 })
-        );
-
         
         modelBuilder.Entity<DishMenuItemDbo>()
             .HasKey(d => d.Id);

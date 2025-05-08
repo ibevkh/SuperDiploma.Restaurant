@@ -9,7 +9,7 @@ using SuperDiploma.Restaurant.DomainService.Dto.Models;
 namespace SuperDiploma.Restaurant.DomainService;
 
 public class ShopItemCategoryService
-    : GenericShopItem<ShopItemCategoryDbo, ShopItemCategoryFormDto>, IShopItemCategoryService
+    : GenericService<ShopItemCategoryDbo, ShopItemCategoryFormDto>, IShopItemCategoryService
 {
     public ShopItemCategoryService(IRestaurantUnitOfWork myUnitOfWork, IAuthService authService, IMapper mapper)
         : base(myUnitOfWork, authService, mapper) { }

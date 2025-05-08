@@ -7,7 +7,7 @@ using SuperDiploma.Restaurant.DomainService.Dto.Models;
 
 namespace SuperDiploma.Restaurant.DomainService;
 
-public class GenericShopItem<TDbo, TDto> : IGenericShopItem<TDbo, TDto>
+public class GenericService<TDbo, TDto> : IGenericShopItem<TDbo, TDto>
     where TDbo : SuperDiplomaBaseDbo
     where TDto : class
 {
@@ -15,7 +15,7 @@ public class GenericShopItem<TDbo, TDto> : IGenericShopItem<TDbo, TDto>
     protected readonly IAuthService AuthService;
     protected readonly IMapper Mapper;
 
-    public GenericShopItem (IRestaurantUnitOfWork myUnitOfWork, IAuthService authService, IMapper mapper)
+    public GenericService (IRestaurantUnitOfWork myUnitOfWork, IAuthService authService, IMapper mapper)
     {
         MyUnitOfWork = myUnitOfWork;
         AuthService = authService;

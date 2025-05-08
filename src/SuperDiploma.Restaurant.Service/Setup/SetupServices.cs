@@ -14,7 +14,6 @@ public static class SetupServices
                 .AddScoped<IShopItemCategoryService, ShopItemCategoryService>()
                 .AddScoped<IShopItemService, ShopItemService>()
                 .AddScoped<IAuthService, AuthService>()
-            ;
-                
+                .AddScoped<IRestaurantMenuCardService, RestaurantMenuCardService>();
     }
 }

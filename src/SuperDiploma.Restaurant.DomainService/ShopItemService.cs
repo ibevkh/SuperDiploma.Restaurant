@@ -10,7 +10,7 @@ using SuperDiploma.Restaurant.DomainService.Enums;
 
 namespace SuperDiploma.Restaurant.DomainService;
 
-public class ShopItemService : GenericShopItem<ShopItemDbo, ShopItemFormDto>, IShopItemService
+public class ShopItemService : GenericService<ShopItemDbo, ShopItemFormDto>, IShopItemService
 {
     public ShopItemService(IRestaurantUnitOfWork myUnitOfWork, IAuthService authService, IMapper mapper)
         : base(myUnitOfWork, authService, mapper){ }
