@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SuperDiploma.Restaurant.DataContext.EF;
 
@@ -11,9 +12,11 @@ using SuperDiploma.Restaurant.DataContext.EF;
 namespace SuperDiploma.Restaurant.Service.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    partial class RestaurantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250514215326_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace SuperDiploma.Restaurant.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customer");
 
                     b.HasData(
                         new
@@ -151,7 +154,10 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<string>("CustomerAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<string>("CustomerName")
@@ -159,12 +165,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
 
                     b.Property<string>("CustomerPhoneNumber")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DeliveryAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("DeliveryTime")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -175,11 +175,14 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                     b.Property<int>("ModifiedBy")
                         .HasColumnType("int");
 
+                    b.Property<int>("ShopItemId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
 
                     b.HasData(
                         new
@@ -188,10 +191,10 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = 1,
                             CustomerId = 2,
-                            DeliveryTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             IsDeleted = false,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedBy = 1
+                            ModifiedBy = 1,
+                            ShopItemId = 0
                         },
                         new
                         {
@@ -199,10 +202,10 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = 1,
                             CustomerId = 3,
-                            DeliveryTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             IsDeleted = false,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedBy = 1
+                            ModifiedBy = 1,
+                            ShopItemId = 0
                         },
                         new
                         {
@@ -210,10 +213,10 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = 1,
                             CustomerId = 4,
-                            DeliveryTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             IsDeleted = false,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedBy = 1
+                            ModifiedBy = 1,
+                            ShopItemId = 0
                         },
                         new
                         {
@@ -221,10 +224,10 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = 1,
                             CustomerId = 5,
-                            DeliveryTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             IsDeleted = false,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedBy = 1
+                            ModifiedBy = 1,
+                            ShopItemId = 0
                         },
                         new
                         {
@@ -232,10 +235,10 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = 1,
                             CustomerId = 1,
-                            DeliveryTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             IsDeleted = false,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedBy = 1
+                            ModifiedBy = 1,
+                            ShopItemId = 0
                         },
                         new
                         {
@@ -243,10 +246,10 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = 1,
                             CustomerId = 2,
-                            DeliveryTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             IsDeleted = false,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedBy = 1
+                            ModifiedBy = 1,
+                            ShopItemId = 0
                         },
                         new
                         {
@@ -254,10 +257,10 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = 1,
                             CustomerId = 3,
-                            DeliveryTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             IsDeleted = false,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedBy = 1
+                            ModifiedBy = 1,
+                            ShopItemId = 0
                         },
                         new
                         {
@@ -265,10 +268,10 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = 1,
                             CustomerId = 4,
-                            DeliveryTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             IsDeleted = false,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedBy = 1
+                            ModifiedBy = 1,
+                            ShopItemId = 0
                         },
                         new
                         {
@@ -276,10 +279,10 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = 1,
                             CustomerId = 5,
-                            DeliveryTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             IsDeleted = false,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedBy = 1
+                            ModifiedBy = 1,
+                            ShopItemId = 0
                         },
                         new
                         {
@@ -287,150 +290,178 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                             CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = 1,
                             CustomerId = 1,
-                            DeliveryTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             IsDeleted = false,
                             ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedBy = 1
+                            ModifiedBy = 1,
+                            ShopItemId = 0
                         });
                 });
 
             modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.OrderItemDbo", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ShopItemId")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("OrderId", "ShopItemId");
+                    b.Property<int>("ShopItemId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ShopItemId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItemDbo");
 
                     b.HasData(
                         new
                         {
+                            Id = 1,
                             OrderId = 2,
-                            ShopItemId = 2,
-                            Quantity = 2
+                            Quantity = 2,
+                            ShopItemId = 2
                         },
                         new
                         {
+                            Id = 2,
                             OrderId = 3,
-                            ShopItemId = 3,
-                            Quantity = 3
+                            Quantity = 3,
+                            ShopItemId = 3
                         },
                         new
                         {
+                            Id = 3,
                             OrderId = 4,
-                            ShopItemId = 4,
-                            Quantity = 1
+                            Quantity = 1,
+                            ShopItemId = 4
                         },
                         new
                         {
+                            Id = 4,
                             OrderId = 5,
-                            ShopItemId = 5,
-                            Quantity = 2
+                            Quantity = 2,
+                            ShopItemId = 5
                         },
                         new
                         {
+                            Id = 5,
                             OrderId = 6,
-                            ShopItemId = 6,
-                            Quantity = 3
+                            Quantity = 3,
+                            ShopItemId = 6
                         },
                         new
                         {
+                            Id = 6,
                             OrderId = 7,
-                            ShopItemId = 7,
-                            Quantity = 1
+                            Quantity = 1,
+                            ShopItemId = 7
                         },
                         new
                         {
+                            Id = 7,
                             OrderId = 8,
-                            ShopItemId = 8,
-                            Quantity = 2
+                            Quantity = 2,
+                            ShopItemId = 8
                         },
                         new
                         {
+                            Id = 8,
                             OrderId = 9,
-                            ShopItemId = 9,
-                            Quantity = 3
+                            Quantity = 3,
+                            ShopItemId = 9
                         },
                         new
                         {
+                            Id = 9,
                             OrderId = 10,
-                            ShopItemId = 10,
-                            Quantity = 1
+                            Quantity = 1,
+                            ShopItemId = 10
                         },
                         new
                         {
+                            Id = 10,
                             OrderId = 1,
-                            ShopItemId = 11,
-                            Quantity = 2
+                            Quantity = 2,
+                            ShopItemId = 11
                         },
                         new
                         {
+                            Id = 11,
                             OrderId = 2,
-                            ShopItemId = 12,
-                            Quantity = 3
+                            Quantity = 3,
+                            ShopItemId = 12
                         },
                         new
                         {
+                            Id = 12,
                             OrderId = 3,
-                            ShopItemId = 13,
-                            Quantity = 1
+                            Quantity = 1,
+                            ShopItemId = 13
                         },
                         new
                         {
+                            Id = 13,
                             OrderId = 4,
-                            ShopItemId = 14,
-                            Quantity = 2
+                            Quantity = 2,
+                            ShopItemId = 14
                         },
                         new
                         {
+                            Id = 14,
                             OrderId = 5,
-                            ShopItemId = 15,
-                            Quantity = 3
+                            Quantity = 3,
+                            ShopItemId = 15
                         },
                         new
                         {
+                            Id = 15,
                             OrderId = 6,
-                            ShopItemId = 1,
-                            Quantity = 1
+                            Quantity = 1,
+                            ShopItemId = 1
                         },
                         new
                         {
+                            Id = 16,
                             OrderId = 7,
-                            ShopItemId = 2,
-                            Quantity = 2
+                            Quantity = 2,
+                            ShopItemId = 2
                         },
                         new
                         {
+                            Id = 17,
                             OrderId = 8,
-                            ShopItemId = 3,
-                            Quantity = 3
+                            Quantity = 3,
+                            ShopItemId = 3
                         },
                         new
                         {
+                            Id = 18,
                             OrderId = 9,
-                            ShopItemId = 4,
-                            Quantity = 1
+                            Quantity = 1,
+                            ShopItemId = 4
                         },
                         new
                         {
+                            Id = 19,
                             OrderId = 10,
-                            ShopItemId = 5,
-                            Quantity = 2
+                            Quantity = 2,
+                            ShopItemId = 5
                         },
                         new
                         {
+                            Id = 20,
                             OrderId = 1,
-                            ShopItemId = 6,
-                            Quantity = 3
+                            Quantity = 3,
+                            ShopItemId = 6
                         });
                 });
 
@@ -917,7 +948,8 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                     b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.CustomerDbo", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
                 });

@@ -28,8 +28,4 @@
     <ProjectReference Include="..\SuperDiploma.Restaurant.DomainService.Validators\SuperDiploma.Restaurant.DomainService.Validators.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

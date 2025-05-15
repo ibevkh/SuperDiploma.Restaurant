@@ -1,25 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SuperDiploma.Core.Models;
 
 namespace SuperDiploma.Restaurant.DataContext.Entities.Models;
 
-public class OrderDbo
+public class OrderDbo : SuperDiplomaBaseDbo
 {
-    public int Id { get; set; }
-
-    public DateTime OrderTime { get; set; }
-
-    [Range(0, 100000)]
-    public decimal TotalPrice { get; set; }
-
-    public DateTime CreatedAt { get; set; }
-
-    public int CustomerId { get; set; }
-
-    public CustomerDbo Customer { get; set; } //Order належить одному Customer.
-
-    public int? ReservationId { get; set; }
-
-    public ReservationDbo Reservation { get; set; } //Order може бути прив'язаний до Reservation, або не мати його.
-
-    public ICollection<OrderItemDbo> OrderItems { get; set; } //Order може містити багато OrderItem.
+    public string CustomerPhoneNumber { get; set; }
+    public string CustomerName { get; set; }
+    public string DeliveryAddress { get; set; }
+    public DateTimeOffset DeliveryTime { get; set; }
+    public int? CustomerId { get; set; }
+    public virtual CustomerDbo Customer { get; set; }
+    public virtual ICollection<OrderItemDbo> OrderItems { get; set; } 
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SuperDiploma.Restaurant.DomainService.Contracts;
 using SuperDiploma.Restaurant.DomainService.Dto.Models;
 using SuperDiploma.Restaurant.DomainService.Dto.Models.ShopItem;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SuperDiploma.Restaurant.Api;
 
@@ -21,6 +22,11 @@ public class ShopItemsController : ControllerBase
     }
 
 
+    /// <summary>
+    /// Returns paginated filtered list of shop items
+    /// </summary>
+    /// <param name="filter"><see cref="ShopItemGridFilterDto"/>></param>
+    /// <returns>List of <see cref="ShopItemListItemDto"/> </returns>
     [HttpPost("filtered-grid")]
     public async Task<ActionResult<PaginatedResponseDto<IEnumerable<ShopItemListItemDto>>>> GetFilteredGrid(
         ShopItemGridFilterDto filter)

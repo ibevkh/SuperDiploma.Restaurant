@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Models\ShopItemCategoryGridFilterDto.cs" />
+    <None Include="Models\CategoryShopItem\ShopItemCategoryGridFilterDto.cs" />
   </ItemGroup>
 
   <ItemGroup>

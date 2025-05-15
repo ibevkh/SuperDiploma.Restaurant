@@ -1,9 +1,10 @@
-﻿using SuperDiploma.Restaurant.DomainService.Dto.Models;
+﻿using SuperDiploma.Restaurant.DomainService.Dto.Models.Order;
+using SuperDiploma.Restaurant.DomainService.Dto.Models;
 
-namespace SuperDiploma.Restaurant.DomainService.Contracts;
+namespace SuperDiploma.Restaurant.DomainService;
 
 public interface IOrderService
 {
-    //Task<OrderDto> AddOrderAsync(OrderDto orderDto);
-    //Task<IEnumerable<OrderDto>> GetOrderAsync();
+    Task<PaginatedResponseDto<IEnumerable<OrderGridDto>>> GetListAsync(OrderGridFilterDto filter);
+    Task<OrderRequestDto> AddOrderAsync(OrderRequestDto orderRequestDto);
 }

@@ -12,8 +12,8 @@ using SuperDiploma.Restaurant.DataContext.EF;
 namespace SuperDiploma.Restaurant.Service.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20250507133646_price1")]
-    partial class price1
+    [Migration("20250514174659_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,49 +25,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.AdminDbo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AdminDbo");
-                });
-
-            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.CategoryDbo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.CustomerDbo", b =>
                 {
                     b.Property<int>("Id")
@@ -77,75 +34,110 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
-
-                    b.Property<int>("ApartmentNumber")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(1);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Entrance")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Phone")
-                        .HasMaxLength(10)
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CustomerOrders");
-                });
-
-            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.DishMenuItemDbo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CategoryDboId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("ApartmentNumber")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Entrance")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset>("ModifiedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryDboId");
+                    b.ToTable("Customer");
 
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Dishes");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Вулиця №1",
+                            ApartmentNumber = 11,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            Entrance = 1,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1,
+                            Name = "Клієнт 1",
+                            PhoneNumber = "12345000 + i"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "Вулиця №2",
+                            ApartmentNumber = 12,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            Entrance = 2,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1,
+                            Name = "Клієнт 2",
+                            PhoneNumber = "12345000 + i"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "Вулиця №3",
+                            ApartmentNumber = 13,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            Entrance = 3,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1,
+                            Name = "Клієнт 3",
+                            PhoneNumber = "12345000 + i"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "Вулиця №4",
+                            ApartmentNumber = 14,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            Entrance = 4,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1,
+                            Name = "Клієнт 4",
+                            PhoneNumber = "12345000 + i"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "Вулиця №5",
+                            ApartmentNumber = 15,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            Entrance = 5,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1,
+                            Name = "Клієнт 5",
+                            PhoneNumber = "12345000 + i"
+                        });
                 });
 
             modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.OrderDbo", b =>
@@ -156,28 +148,140 @@ namespace SuperDiploma.Restaurant.Service.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerAddress")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("OrderTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("CustomerName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReservationId")
+                    b.Property<string>("CustomerPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset>("ModifiedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("ModifiedBy")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ReservationId");
+                    b.ToTable("Order");
 
-                    b.ToTable("OrderOrders");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            CustomerId = 2,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            CustomerId = 3,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            CustomerId = 4,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            CustomerId = 5,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            CustomerId = 1,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            CustomerId = 2,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            CustomerId = 3,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            CustomerId = 4,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            CustomerId = 5,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = 1,
+                            CustomerId = 1,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            ModifiedBy = 1
+                        });
                 });
 
             modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.OrderItemDbo", b =>
@@ -188,53 +292,164 @@ namespace SuperDiploma.Restaurant.Service.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("DishMenuItemId")
-                        .HasColumnType("int");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(1);
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShopItemId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DishMenuItemId");
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems");
-                });
+                    b.HasIndex("ShopItemId");
 
-            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.ReservationDbo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.ToTable("OrderItemDbo");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ReservationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TableId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("TableId");
-
-                    b.ToTable("Reservations");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            OrderId = 2,
+                            Quantity = 2,
+                            ShopItemId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            OrderId = 3,
+                            Quantity = 3,
+                            ShopItemId = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            OrderId = 4,
+                            Quantity = 1,
+                            ShopItemId = 4
+                        },
+                        new
+                        {
+                            Id = 4,
+                            OrderId = 5,
+                            Quantity = 2,
+                            ShopItemId = 5
+                        },
+                        new
+                        {
+                            Id = 5,
+                            OrderId = 6,
+                            Quantity = 3,
+                            ShopItemId = 6
+                        },
+                        new
+                        {
+                            Id = 6,
+                            OrderId = 7,
+                            Quantity = 1,
+                            ShopItemId = 7
+                        },
+                        new
+                        {
+                            Id = 7,
+                            OrderId = 8,
+                            Quantity = 2,
+                            ShopItemId = 8
+                        },
+                        new
+                        {
+                            Id = 8,
+                            OrderId = 9,
+                            Quantity = 3,
+                            ShopItemId = 9
+                        },
+                        new
+                        {
+                            Id = 9,
+                            OrderId = 10,
+                            Quantity = 1,
+                            ShopItemId = 10
+                        },
+                        new
+                        {
+                            Id = 10,
+                            OrderId = 1,
+                            Quantity = 2,
+                            ShopItemId = 11
+                        },
+                        new
+                        {
+                            Id = 11,
+                            OrderId = 2,
+                            Quantity = 3,
+                            ShopItemId = 12
+                        },
+                        new
+                        {
+                            Id = 12,
+                            OrderId = 3,
+                            Quantity = 1,
+                            ShopItemId = 13
+                        },
+                        new
+                        {
+                            Id = 13,
+                            OrderId = 4,
+                            Quantity = 2,
+                            ShopItemId = 14
+                        },
+                        new
+                        {
+                            Id = 14,
+                            OrderId = 5,
+                            Quantity = 3,
+                            ShopItemId = 15
+                        },
+                        new
+                        {
+                            Id = 15,
+                            OrderId = 6,
+                            Quantity = 1,
+                            ShopItemId = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            OrderId = 7,
+                            Quantity = 2,
+                            ShopItemId = 2
+                        },
+                        new
+                        {
+                            Id = 17,
+                            OrderId = 8,
+                            Quantity = 3,
+                            ShopItemId = 3
+                        },
+                        new
+                        {
+                            Id = 18,
+                            OrderId = 9,
+                            Quantity = 1,
+                            ShopItemId = 4
+                        },
+                        new
+                        {
+                            Id = 19,
+                            OrderId = 10,
+                            Quantity = 2,
+                            ShopItemId = 5
+                        },
+                        new
+                        {
+                            Id = 20,
+                            OrderId = 1,
+                            Quantity = 3,
+                            ShopItemId = 6
+                        });
                 });
 
             modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.ShopItemCategoryDbo", b =>
@@ -715,43 +930,6 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.TableDbo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("TableNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TableDbo");
-                });
-
-            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.DishMenuItemDbo", b =>
-                {
-                    b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.CategoryDbo", null)
-                        .WithMany("Dishes")
-                        .HasForeignKey("CategoryDboId");
-
-                    b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.CategoryDbo", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.OrderDbo", b =>
                 {
                     b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.CustomerDbo", "Customer")
@@ -760,51 +938,26 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.ReservationDbo", "Reservation")
-                        .WithMany()
-                        .HasForeignKey("ReservationId");
-
                     b.Navigation("Customer");
-
-                    b.Navigation("Reservation");
                 });
 
             modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.OrderItemDbo", b =>
                 {
-                    b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.DishMenuItemDbo", "DishMenuItem")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("DishMenuItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.OrderDbo", "Reservation")
+                    b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.OrderDbo", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("DishMenuItem");
-
-                    b.Navigation("Reservation");
-                });
-
-            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.ReservationDbo", b =>
-                {
-                    b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.CustomerDbo", "Customer")
-                        .WithMany("Reservations")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.ShopItemDbo", "ShopItem")
+                        .WithMany("Items")
+                        .HasForeignKey("ShopItemId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SuperDiploma.Restaurant.DataContext.Entities.Models.TableDbo", "Table")
-                        .WithMany("Reservations")
-                        .HasForeignKey("TableId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Order");
 
-                    b.Navigation("Customer");
-
-                    b.Navigation("Table");
+                    b.Navigation("ShopItem");
                 });
 
             modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.ShopItemDbo", b =>
@@ -818,21 +971,9 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.CategoryDbo", b =>
-                {
-                    b.Navigation("Dishes");
-                });
-
             modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.CustomerDbo", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("Reservations");
-                });
-
-            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.DishMenuItemDbo", b =>
-                {
-                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.OrderDbo", b =>
@@ -845,9 +986,9 @@ namespace SuperDiploma.Restaurant.Service.Migrations
                     b.Navigation("ShopItems");
                 });
 
-            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.TableDbo", b =>
+            modelBuilder.Entity("SuperDiploma.Restaurant.DataContext.Entities.Models.ShopItemDbo", b =>
                 {
-                    b.Navigation("Reservations");
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

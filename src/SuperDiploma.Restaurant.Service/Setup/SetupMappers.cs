@@ -12,6 +12,7 @@ public static class SetupMappers
                 .AddAutoMapper(typeof(DatasourceMapping))
                 .AddAutoMapper(typeof(PaginatedResponseMapping))
                 .AddAutoMapper(typeof(ShopItemCategoryMapping))
+                .AddAutoMapper(typeof(OrderMapping))
             ;
     }
 }

@@ -5,7 +5,7 @@
 namespace SuperDiploma.Restaurant.Service.Migrations
 {
     /// <inheritdoc />
-    public partial class _2 : Migration
+    public partial class init4 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

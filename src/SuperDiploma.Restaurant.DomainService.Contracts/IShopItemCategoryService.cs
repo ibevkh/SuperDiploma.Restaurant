@@ -1,5 +1,6 @@
 ﻿using SuperDiploma.Restaurant.DataContext.Entities.Models;
 using SuperDiploma.Restaurant.DomainService.Dto.Models;
+using SuperDiploma.Restaurant.DomainService.Dto.Models.CategoryShopItem;
 using SuperDiploma.Restaurant.DomainService.Dto.Models.ShopItem;
 
 namespace SuperDiploma.Restaurant.DomainService.Contracts;

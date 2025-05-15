@@ -1,36 +1,19 @@
 ﻿using AutoMapper;
 using SuperDiploma.Restaurant.DataContext.EF;
-using SuperDiploma.Restaurant.DataContext.EF.Models;
-using SuperDiploma.Restaurant.DataContext.EF.Repositories;
 using SuperDiploma.Restaurant.DataContext.Entities.Models;
-using SuperDiploma.Restaurant.DomainService.Dto.Models;
 using SuperDiploma.Restaurant.DomainService.Dto.Models.Order;
-using URF.Core.Abstractions;
 
 namespace SuperDiploma.Restaurant.DomainService;
 
-public class OrderService : IOrderService
+public class OrderRequestService : IOrderRequestService
 {
     private readonly IRestaurantUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public OrderService(IRestaurantUnitOfWork unitOfWork, IMapper mapper)
+    public OrderRequestService(IRestaurantUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
-    }
-
-    public async Task<PaginatedResponseDto<IEnumerable<OrderGridDto>>> GetListAsync(OrderGridFilterDto filter)
-    {
-        var filterDbo = _mapper.Map<OrderGridFilter>(filter);
-
-        var paginatedOrders = await _unitOfWork
-            .Repository<OrderDbo>()
-            .GetPaginatedOrdersAsync(filterDbo);
-
-        var result = _mapper.Map<PaginatedResponseDto<IEnumerable<OrderGridDto>>>(paginatedOrders);
-
-        return result;
     }
 
     public async Task<OrderRequestDto> AddOrderAsync(OrderRequestDto orderRequestDto)

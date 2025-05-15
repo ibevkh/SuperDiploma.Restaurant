@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using SuperDiploma.Core;
+using SuperDiploma.Restaurant.DataContext.EF.Repositories;
 using SuperDiploma.Restaurant.DataContext.Entities.Models;
 using SuperDiploma.Restaurant.DomainService.Dto.Models.ShopItem;
 using SuperDiploma.Restaurant.DomainService.Validators.ShopItems;
@@ -17,6 +18,8 @@ public static class SetupRepositories
                 //.AddRepository<ReservationDbo>()
                 .AddRepository<ShopItemDbo>()
                 .AddRepository<ShopItemCategoryDbo>()
+                .AddRepository<OrderDbo>()
+                .AddTempRepository<OrderItemDbo>()
             ;
     }
 }

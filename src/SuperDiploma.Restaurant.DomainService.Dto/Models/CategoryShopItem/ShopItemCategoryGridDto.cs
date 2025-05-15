@@ -1,4 +1,4 @@
-﻿namespace SuperDiploma.Restaurant.DomainService.Dto.Models;
+﻿namespace SuperDiploma.Restaurant.DomainService.Dto.Models.CategoryShopItem;
 
 public class ShopItemCategoryGridDto
 {

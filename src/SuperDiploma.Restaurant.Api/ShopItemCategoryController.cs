@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SuperDiploma.Restaurant.DomainService;
 using SuperDiploma.Restaurant.DomainService.Contracts;
 using SuperDiploma.Restaurant.DomainService.Dto.Models;
+using SuperDiploma.Restaurant.DomainService.Dto.Models.CategoryShopItem;
 using SuperDiploma.Restaurant.DomainService.Dto.Models.ShopItem;
 
 namespace SuperDiploma.Restaurant.Api;

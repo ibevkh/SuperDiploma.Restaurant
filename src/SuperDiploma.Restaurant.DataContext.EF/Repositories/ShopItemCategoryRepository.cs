@@ -72,4 +72,13 @@ public static class ShopItemCategoryRepository
         };
     }
 
+    public static async Task<IEnumerable<ShopItemCategoryDbo>> GetListWithShopItemAsync(
+        this ISuperDiplomaRepository<ShopItemCategoryDbo> repository)
+    {
+        return await repository.Queryable().AsNoTracking().Where(x => !x.IsDeleted)
+            .Include(x => x.ShopItems)
+            .Where(x => x.ShopItems != null && x.ShopItems.Any())
+            .ToListAsync();
+    }
+
 }

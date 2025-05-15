@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SuperDiploma.Core;
 using SuperDiploma.Core.Models;
+using URF.Core.Abstractions;
 using URF.Core.EF;
 
 namespace SuperDiploma.Restaurant.DataContext.EF;
@@ -23,6 +24,11 @@ public class RestaurantUnitOfWork : UnitOfWork, IRestaurantUnitOfWork
     public ISuperDiplomaRepository<T> Repository<T>() where T : SuperDiplomaBaseDbo
     {
         return _serviceProvider.GetService(typeof(ISuperDiplomaRepository<T>)) as ISuperDiplomaRepository<T> ?? throw new InvalidOperationException();
+    }
+
+    public IRepository<T> TempRepository<T>() where T : class
+    {
+        return _serviceProvider.GetService(typeof(IRepository<T>)) as IRepository<T> ?? throw new InvalidOperationException();
     }
 
     public async Task<int> SaveChangesAsync()

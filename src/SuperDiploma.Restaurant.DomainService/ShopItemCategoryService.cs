@@ -5,6 +5,7 @@ using SuperDiploma.Restaurant.DataContext.EF.Repositories;
 using SuperDiploma.Restaurant.DataContext.Entities.Models;
 using SuperDiploma.Restaurant.DomainService.Contracts;
 using SuperDiploma.Restaurant.DomainService.Dto.Models;
+using SuperDiploma.Restaurant.DomainService.Dto.Models.CategoryShopItem;
 
 namespace SuperDiploma.Restaurant.DomainService;
 
