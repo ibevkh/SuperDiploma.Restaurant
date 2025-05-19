@@ -4,5 +4,5 @@ namespace SuperDiploma.Restaurant.DomainService.Contracts;
 
 public interface IRestaurantMenuCardService
 {
-    Task<PaginatedResponseDto<IEnumerable<RestaurantMenuCardDto>>> GetFilteredCardAsync(RestaurantMenuCardFilterDto filter);
+    //Task<PaginatedResponseDto<IEnumerable<RestaurantMenuCardDto>>> GetFilteredCardAsync(RestaurantMenuCardFilterDto filter);
 }

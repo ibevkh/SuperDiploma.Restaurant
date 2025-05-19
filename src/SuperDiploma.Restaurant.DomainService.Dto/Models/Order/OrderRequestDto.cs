@@ -8,4 +8,5 @@ public class OrderRequestDto
     public string DeliveryAddress { get; set; }
     public DateTimeOffset DeliveryTime { get; set; }
     public IEnumerable<OrderItemGridDto> Items { get; set; }
+    public decimal TotalAmount { get; set; }
 }

@@ -13,20 +13,19 @@ public class OrderMapping : Profile
         CreateMap<OrderGridFilterDto, OrderGridFilter>();
 
         CreateMap<OrderDbo, OrderGridDto>()
-            .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
-            .ForMember(dest => dest.CustomerPhoneNumber, opt => opt.MapFrom(src => src.Customer.PhoneNumber))
-            .ForMember(dest => dest.CustomerAddress, opt => opt.MapFrom(src => src.Customer.Address))
-            .ForMember(dest => dest.Entrance, opt => opt.MapFrom(src => src.Customer.Entrance))
-            .ForMember(dest => dest.ApartmentNumber, opt => opt.MapFrom(src => src.Customer.ApartmentNumber))
+            //.ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
+            //.ForMember(dest => dest.CustomerPhoneNumber, opt => opt.MapFrom(src => src.Customer.PhoneNumber))
+            //.ForMember(dest => dest.CustomerAddress, opt => opt.MapFrom(src => src.Customer.Address))
+            //.ForMember(dest => dest.Entrance, opt => opt.MapFrom(src => src.Customer.Entrance))
+            //.ForMember(dest => dest.ApartmentNumber, opt => opt.MapFrom(src => src.Customer.ApartmentNumber))
             .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.OrderItems))
-            .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => src.CreatedAt));
+            //.ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => src.CreatedAt))
+            ;
 
         CreateMap<OrderItemDbo, OrderItemGridDto>()
             .ForMember(dest => dest.ShopItemId, opt => opt.MapFrom(src => src.ShopItemId))
             .ForMember(dest => dest.ShopItemName, opt => opt.MapFrom(src => src.ShopItem.Name))
             .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity));
-
-        CreateMap<PaginatedResponse<IEnumerable<OrderDbo>>, PaginatedResponseDto<IEnumerable<OrderGridDto>>>();
 
         CreateMap<OrderRequestDto, OrderDbo>()
             .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.CustomerName))

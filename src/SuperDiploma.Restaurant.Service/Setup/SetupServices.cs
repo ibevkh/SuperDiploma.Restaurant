@@ -17,7 +17,6 @@ public static class SetupServices
             .AddScoped<IRestaurantMenuCardService, RestaurantMenuCardService>()
             .AddScoped<IRestaurantMenuService, RestaurantMenuService>()
             .AddScoped<IOrderService, OrderService>()
-            .AddScoped<IOrderRequestService, OrderRequestService>()
             ;
     }
 }

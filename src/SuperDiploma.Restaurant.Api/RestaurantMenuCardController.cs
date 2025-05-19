@@ -15,11 +15,11 @@ public class RestaurantMenuCardController : ControllerBase
         _restaurantMenuCardService = restaurantMenuCardService;
     }
 
-    [HttpPost("list")]
-    public async Task<ActionResult<PaginatedResponseDto<IEnumerable<RestaurantMenuCardDto>>>> GetListAsync(
-        [FromBody] RestaurantMenuCardFilterDto filter)
-    {
-        var result = await _restaurantMenuCardService.GetFilteredCardAsync(filter);
-        return Ok(result);
-    }
+    //[HttpPost("list")]
+    //public async Task<ActionResult<PaginatedResponseDto<IEnumerable<RestaurantMenuCardDto>>>> GetListAsync(
+    //    [FromBody] RestaurantMenuCardFilterDto filter)
+    //{
+    //    var result = await _restaurantMenuCardService.GetFilteredCardAsync(filter);
+    //    return Ok(result);
+    //}
 }

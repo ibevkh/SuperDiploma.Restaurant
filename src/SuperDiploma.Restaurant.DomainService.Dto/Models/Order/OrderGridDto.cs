@@ -8,9 +8,9 @@ public class OrderGridDto
     // Customer Info
     public string CustomerName { get; set; }
     public string CustomerPhoneNumber { get; set; }
-    public string CustomerAddress { get; set; }
-    public int Entrance { get; set; }
-    public int ApartmentNumber { get; set; }
+    public string DeliveryAddress { get; set; }
+    public decimal TotalAmount { get; set; }
+    public DateTimeOffset DeliveryTime { get; set; }
 
     public DateTimeOffset CreatedAt { get; set; }
 
