@@ -6,6 +6,5 @@ namespace SuperDiploma.Core;
 
 public interface ISuperDiplomaRepository<T> : IRepository<T> where T : SuperDiplomaBaseDbo
 {
-    Task<IEnumerable<T>> GetAllAsync();
     Task<T> GetByIdAsync(int id);
 }

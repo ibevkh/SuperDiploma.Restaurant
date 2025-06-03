@@ -8,9 +8,6 @@ public static class SetupServices
     public static IServiceCollection AddRestaurantServices(this IServiceCollection services)
     {
         return services
-            //.AddScoped<ICategoryService, CategoryService>()
-            //.AddScoped<IOrderService, OrderService>()
-            //.AddScoped<IDishService, DishService>()
             .AddScoped<IShopItemCategoryService, ShopItemCategoryService>()
             .AddScoped<IShopItemService, ShopItemService>()
             .AddScoped<IAuthService, AuthService>()

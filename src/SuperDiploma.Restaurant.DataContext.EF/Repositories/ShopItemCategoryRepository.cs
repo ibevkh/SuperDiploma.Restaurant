@@ -72,13 +72,33 @@ public static class ShopItemCategoryRepository
         };
     }
 
+    //public static async Task<IEnumerable<ShopItemCategoryDbo>> GetListWithShopItemAsync(
+    //    this ISuperDiplomaRepository<ShopItemCategoryDbo> repository)
+    //{
+    //    return await repository.Queryable().AsNoTracking().Where(x => !x.IsDeleted)
+    //        .Include(x => x.ShopItems)
+    //        .Where(x => x.ShopItems != null && x.ShopItems.Any())
+    //        .ToListAsync();
+    //}
     public static async Task<IEnumerable<ShopItemCategoryDbo>> GetListWithShopItemAsync(
         this ISuperDiplomaRepository<ShopItemCategoryDbo> repository)
     {
-        return await repository.Queryable().AsNoTracking().Where(x => !x.IsDeleted)
+        var categories = await repository.Queryable()
+            .AsNoTracking()
+            .Where(x => !x.IsDeleted)
             .Include(x => x.ShopItems)
-            .Where(x => x.ShopItems != null && x.ShopItems.Any())
             .ToListAsync();
-    }
 
+        // Фільтрація категорій, у яких є хоча б один не видалений товар
+        return categories
+            .Select(category =>
+            {
+                category.ShopItems = category.ShopItems
+                    ?.Where(item => !item.IsDeleted && item.StateId != 2)
+                    .ToList();
+                return category;
+            })
+            .Where(category => category.ShopItems != null && category.ShopItems.Any())
+            .ToList();
+    }
 }

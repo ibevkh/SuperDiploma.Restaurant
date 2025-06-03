@@ -43,13 +43,13 @@ public class RestaurantDbContext : DbContext
         modelBuilder.Entity<ShopItemDbo>().ToTable("ShopItems", "md");
 
 
-        modelBuilder.Entity<ShopItemCategoryDbo>().HasData(
-            Enumerable.Range(1, 15).Select(s => new ShopItemCategoryDbo { Id = s, Name = $"Категорія {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1 })
-        );
+        //modelBuilder.Entity<ShopItemCategoryDbo>().HasData(
+        //    Enumerable.Range(1, 15).Select(s => new ShopItemCategoryDbo { Id = s, Name = $"Категорія {s}", Description = $"Якийсь опис {s}", CreatedBy = 1, ModifiedBy = 1 })
+        //);
 
-        modelBuilder.Entity<ShopItemDbo>().HasData(
-            Enumerable.Range(1, 15).Select(s => new ShopItemDbo { Id = s, Name = $"Товар {s}", Description = $"Якийсь опис {s}", Price = 100, CreatedBy = 1, ModifiedBy = 1, CategoryId = (s < 7) ? 1 : 2, StateId = (s > 7) ? 1 : 2 })
-        );
+        //modelBuilder.Entity<ShopItemDbo>().HasData(
+        //    Enumerable.Range(1, 15).Select(s => new ShopItemDbo { Id = s, Name = $"Товар {s}", Description = $"Якийсь опис {s}", Price = 100, CreatedBy = 1, ModifiedBy = 1, CategoryId = (s < 7) ? 1 : 2, StateId = (s > 7) ? 1 : 2 })
+        //);
 
         modelBuilder.Entity<OrderDbo>(entity =>
         {
@@ -96,38 +96,38 @@ public class RestaurantDbContext : DbContext
                 .HasForeignKey(oi => oi.OrderId);
         });
 
-        modelBuilder.Entity<CustomerDbo>().HasData(
-            Enumerable.Range(1, 5).Select(i => new CustomerDbo
-            {
-                Id = i,
-                Name = $"Клієнт {i}",
-                PhoneNumber = "12345000 + i",
-                Address = $"Вулиця №{i}",
-                Entrance = i, 
-                ApartmentNumber = 10 + i,
-                CreatedBy = 1,
-                ModifiedBy = 1
-            })
-        );
+        //modelBuilder.Entity<CustomerDbo>().HasData(
+        //    Enumerable.Range(1, 5).Select(i => new CustomerDbo
+        //    {
+        //        Id = i,
+        //        Name = $"Клієнт {i}",
+        //        PhoneNumber = "12345000 + i",
+        //        Address = $"Вулиця №{i}",
+        //        Entrance = i, 
+        //        ApartmentNumber = 10 + i,
+        //        CreatedBy = 1,
+        //        ModifiedBy = 1
+        //    })
+        //);
 
-        modelBuilder.Entity<OrderDbo>().HasData(
-            Enumerable.Range(1, 10).Select(i => new OrderDbo
-            {
-                Id = i,
-                CustomerId = (i % 5) + 1, 
-                CreatedBy = 1,
-                ModifiedBy = 1,
-            })
-        );
+        //modelBuilder.Entity<OrderDbo>().HasData(
+        //    Enumerable.Range(1, 10).Select(i => new OrderDbo
+        //    {
+        //        Id = i,
+        //        CustomerId = (i % 5) + 1, 
+        //        CreatedBy = 1,
+        //        ModifiedBy = 1,
+        //    })
+        //);
 
-        modelBuilder.Entity<OrderItemDbo>().HasData(
-            Enumerable.Range(1, 20).Select(i => new OrderItemDbo
-            {
-                OrderId = (i % 10) + 1,       
-                ShopItemId = (i % 15) + 1,    
-                Quantity = (i % 3) + 1
-            })
-        );
+        //modelBuilder.Entity<OrderItemDbo>().HasData(
+        //    Enumerable.Range(1, 20).Select(i => new OrderItemDbo
+        //    {
+        //        OrderId = (i % 10) + 1,       
+        //        ShopItemId = (i % 15) + 1,    
+        //        Quantity = (i % 3) + 1
+        //    })
+        //);
 
         // AdminDbo
         //modelBuilder.Entity<AdminDbo>()
