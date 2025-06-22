@@ -96,6 +96,71 @@ public class RestaurantDbContext : DbContext
                 .HasForeignKey(oi => oi.OrderId);
         });
 
+        // Категорії
+        modelBuilder.Entity<ShopItemCategoryDbo>().HasData(
+            new ShopItemCategoryDbo { Id = 1, Name = "Гарячі страви", Description = "Основні гарячі страви" },
+            new ShopItemCategoryDbo { Id = 2, Name = "Салати", Description = "Свіжі овочеві салати" },
+            new ShopItemCategoryDbo { Id = 3, Name = "Десерти", Description = "Солодощі на будь-який смак" },
+            new ShopItemCategoryDbo { Id = 4, Name = "Напої", Description = "Попити щось)"}
+        );
+
+        // Товари
+        modelBuilder.Entity<ShopItemDbo>().HasData(
+            new ShopItemDbo { Id = 1, Name = "Борщ", Description = "Традиційний український борщ", Price = 95, CategoryId = 1, StateId = 1 },
+            new ShopItemDbo { Id = 2, Name = "Котлета по-київськи", Description = "Соковита курка з маслом", Price = 130, CategoryId = 1, StateId = 1 },
+            new ShopItemDbo { Id = 3, Name = "Деруни зі сметаною", Description = "Картопляні млинці з хрусткою скоринкою", Price = 85, CategoryId = 1, StateId = 1 },
+            new ShopItemDbo { Id = 4, Name = "Плов з м’ясом", Description = "Ароматний плов із свининою", Price = 120, CategoryId = 1, StateId = 1 },
+            new ShopItemDbo { Id = 5, Name = "Вареники з картоплею", Description = "Домашні вареники зі смаженою цибулькою", Price = 90, CategoryId = 1, StateId = 1 },
+
+            new ShopItemDbo { Id = 6, Name = "Цезар", Description = "Салат з куркою, сухариками та соусом", Price = 120, CategoryId = 2, StateId = 1 },
+            new ShopItemDbo { Id = 7, Name = "Олів’є", Description = "Класичний салат з майонезом", Price = 100, CategoryId = 2, StateId = 1 },
+            new ShopItemDbo { Id = 8, Name = "Грецький салат", Description = "Овочевий салат з сиром фета", Price = 110, CategoryId = 2, StateId = 1 },
+            new ShopItemDbo { Id = 9, Name = "Вінегрет", Description = "Овочевий салат із буряком", Price = 85, CategoryId = 2, StateId = 1 },
+            new ShopItemDbo { Id = 10, Name = "Салат з тунцем", Description = "Салат із тунцем та свіжими овочами", Price = 125, CategoryId = 2, StateId = 1 },
+
+            new ShopItemDbo { Id = 11, Name = "Наполеон", Description = "Домашній листковий торт", Price = 80, CategoryId = 3, StateId = 1 },
+            new ShopItemDbo { Id = 12, Name = "Чізкейк", Description = "Ніжний сирний десерт", Price = 95, CategoryId = 3, StateId = 1 },
+            new ShopItemDbo { Id = 13, Name = "Шоколадний фондан", Description = "Гарячий десерт із рідким шоколадом всередині", Price = 110, CategoryId = 3, StateId = 1 },
+            new ShopItemDbo { Id = 14, Name = "Яблучний штрудель", Description = "Випічка з яблуками та корицею", Price = 90, CategoryId = 3, StateId = 1 },
+            new ShopItemDbo { Id = 15, Name = "Морозиво з фруктами", Description = "Кульки ванільного морозива з ягодами", Price = 70, CategoryId = 3, StateId = 1 }
+        );
+
+        // Замовлення
+        modelBuilder.Entity<OrderDbo>().HasData(
+            new OrderDbo
+            {
+                Id = 1,
+                CustomerName = "Іван Іванов",
+                CustomerPhoneNumber = "+380991112233",
+                DeliveryAddress = "м. Київ, вул. Хрещатик, 10",
+                TotalAmount = 225,
+                DeliveryTime = DateTimeOffset.Parse("2025-06-23 10:00"),
+                CustomerId = null,
+                CreatedAt = DateTimeOffset.Parse("2025-06-23 09:00"),
+                IsDeleted = false
+            },
+            new OrderDbo
+            {
+                Id = 2,
+                CustomerName = "Олена Петрівна",
+                CustomerPhoneNumber = "+380661234567",
+                DeliveryAddress = "м. Київ, вул. Дорошенка, 5",
+                TotalAmount = 210,
+                DeliveryTime = DateTimeOffset.Parse("2025-06-23 10:15"),
+                CustomerId = null,
+                CreatedAt = DateTimeOffset.Parse("2025-06-23 10:05"),
+                IsDeleted = false
+            }
+        );
+
+        // Позиції замовлень
+        modelBuilder.Entity<OrderItemDbo>().HasData(
+            new OrderItemDbo { OrderId = 1, ShopItemId = 1, Quantity = 1 },
+            new OrderItemDbo { OrderId = 1, ShopItemId = 2, Quantity = 1 },
+            new OrderItemDbo { OrderId = 2, ShopItemId = 3, Quantity = 2 },
+            new OrderItemDbo { OrderId = 2, ShopItemId = 5, Quantity = 1 }
+        );
+
         //modelBuilder.Entity<CustomerDbo>().HasData(
         //    Enumerable.Range(1, 5).Select(i => new CustomerDbo
         //    {
