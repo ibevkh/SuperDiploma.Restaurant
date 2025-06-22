@@ -16,7 +16,7 @@ public class RestaurantDbContext : DbContext
     public DbSet<ShopItemCategoryDbo> ShopItemCategories { get; set; }
     public DbSet<ShopItemDbo> ShopItems { get; set; }
     public DbSet<OrderDbo> Orders { get; set; }
-    public DbSet<CustomerDbo> Customers { get; set; }
+    //public DbSet<CustomerDbo> Customers { get; set; }
     public DbSet<OrderItemDbo> OrderItems { get; set; }
 
     public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options) { }
@@ -60,10 +60,10 @@ public class RestaurantDbContext : DbContext
 
             entity.Property(o => o.CustomerId);
 
-            entity.HasOne(o => o.Customer)
-                .WithMany(c => c.Orders) 
-                .HasForeignKey(o => o.CustomerId)
-                .OnDelete(DeleteBehavior.Cascade);
+            //entity.HasOne(o => o.Customer)
+            //    .WithMany(c => c.Orders) 
+            //    .HasForeignKey(o => o.CustomerId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
             //entity.HasMany(o => o.OrderItems)
             //    .WithOne(oi => oi.Order)

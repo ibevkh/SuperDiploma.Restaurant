@@ -81,39 +81,39 @@ public static class ShopItemRepository
         };
     }
 
-    public static async Task<PaginatedResponse<IEnumerable<ShopItemDbo>>> GetFilteredCardAsync(
-        this ISuperDiplomaRepository<ShopItemDbo> repository,
-        RestaurantMenuCardFilter filter)
-    {
-        const int defaultPageSize = 10;
-        var pageSize = filter.PageSize ?? defaultPageSize;
-        var pageNumber = filter.PageNumber ?? 0;
+    //public static async Task<PaginatedResponse<IEnumerable<ShopItemDbo>>> GetFilteredCardAsync(
+    //    this ISuperDiplomaRepository<ShopItemDbo> repository,
+    //    RestaurantMenuCardFilter filter)
+    //{
+    //    const int defaultPageSize = 10;
+    //    var pageSize = filter.PageSize ?? defaultPageSize;
+    //    var pageNumber = filter.PageNumber ?? 0;
 
-        var query = repository
-            .Queryable()
-            .AsNoTracking()
-            .Where(x => !x.IsDeleted);
+    //    var query = repository
+    //        .Queryable()
+    //        .AsNoTracking()
+    //        .Where(x => !x.IsDeleted);
 
-        // Фільтрація по категорії
-        if (filter.CategoryId.HasValue)
-        {
-            query = query.Where(x => x.CategoryId == filter.CategoryId.Value);
-        }
+    //    // Фільтрація по категорії
+    //    if (filter.CategoryId.HasValue)
+    //    {
+    //        query = query.Where(x => x.CategoryId == filter.CategoryId.Value);
+    //    }
 
-        var totalQty = await query.CountAsync();
+    //    var totalQty = await query.CountAsync();
 
-        var data = await query
-            .OrderBy(x => x.Name)
-            .Skip(pageNumber * pageSize)
-            .Take(pageSize)
-            .ToListAsync();
+    //    var data = await query
+    //        .OrderBy(x => x.Name)
+    //        .Skip(pageNumber * pageSize)
+    //        .Take(pageSize)
+    //        .ToListAsync();
 
-        return new PaginatedResponse<IEnumerable<ShopItemDbo>>
-        {
-            TotalQty = totalQty,
-            PageSize = pageSize,
-            PageNumber = pageNumber,
-            Data = data
-        };
-    }
+    //    return new PaginatedResponse<IEnumerable<ShopItemDbo>>
+    //    {
+    //        TotalQty = totalQty,
+    //        PageSize = pageSize,
+    //        PageNumber = pageNumber,
+    //        Data = data
+    //    };
+    //}
 }

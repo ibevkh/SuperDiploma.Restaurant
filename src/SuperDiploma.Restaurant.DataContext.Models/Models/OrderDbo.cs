@@ -10,6 +10,6 @@ public class OrderDbo : SuperDiplomaBaseDbo
     public decimal TotalAmount { get; set; }
     public DateTimeOffset DeliveryTime { get; set; }
     public int? CustomerId { get; set; }
-    public virtual CustomerDbo Customer { get; set; }
+    //public virtual CustomerDbo Customer { get; set; }
     public virtual ICollection<OrderItemDbo> OrderItems { get; set; } 
 }

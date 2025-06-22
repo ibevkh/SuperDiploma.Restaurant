@@ -18,7 +18,7 @@ public static class OrderReviewRepository
         var query = repository
             .Queryable()
             .AsNoTracking()
-            .Include(o => o.Customer)
+            //.Include(o => o.Customer)
             .Include(o => o.OrderItems)
             .ThenInclude(oi => oi.ShopItem);
 

@@ -31,11 +31,10 @@ public class OrderMapping : Profile
             .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.CustomerName))
             .ForMember(dest => dest.CustomerPhoneNumber, opt => opt.MapFrom(src => src.CustomerPhoneNumber))
             .ForMember(dest => dest.DeliveryAddress, opt => opt.MapFrom(src => src.DeliveryAddress))
-            .ForMember(dest => dest.CustomerId, opt => opt.Ignore()) // Мапимо CustomerId
+            .ForMember(dest => dest.CustomerId, opt => opt.Ignore()) 
             .ForMember(dest => dest.DeliveryTime, opt => opt.MapFrom(src => src.DeliveryTime))
             //.ForMember(dest => dest.OrderItems, opt => opt.MapFrom(src => src.Items)) // Мапимо OrderItems
             .ForMember(dest => dest.OrderItems, opt => opt.Ignore())
-            .ForMember(dest => dest.Customer, opt => opt.Ignore()) // Ігноруємо Customer, бо передаємо лише CustomerId
             ;
 
         CreateMap<OrderDbo, OrderRequestDto>()
